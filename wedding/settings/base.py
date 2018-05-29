@@ -23,6 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # Application definition
 
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,38 +32,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'wedding',
+    ]
 
-    'spirit.core',
-    'spirit.admin',
-    'spirit.search',
-
-    'spirit.user',
-    'spirit.user.admin',
-    'spirit.user.auth',
-
-    'spirit.category',
-    'spirit.category.admin',
-
-    'spirit.topic',
-    'spirit.topic.admin',
-    'spirit.topic.favorite',
-    'spirit.topic.moderate',
-    'spirit.topic.notification',
-    'spirit.topic.poll',  # todo: remove in Spirit v0.6
-    'spirit.topic.private',
-    'spirit.topic.unread',
-
-    'spirit.comment',
-    'spirit.comment.bookmark',
-    'spirit.comment.flag',
-    'spirit.comment.flag.admin',
-    'spirit.comment.history',
-    'spirit.comment.like',
-    'spirit.comment.poll',
-
-    'djconfig',
-    'haystack',
-]
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,13 +44,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'spirit.core.middleware.XForwardedForMiddleware',
-    'spirit.user.middleware.TimezoneMiddleware',
-    'spirit.user.middleware.LastIPMiddleware',
-    'spirit.user.middleware.LastSeenMiddleware',
-    'spirit.user.middleware.ActiveUserMiddleware',
-    'spirit.core.middleware.PrivateForumMiddleware',
-    'djconfig.middleware.DjConfigMiddleware',
+
 ]
 
 TEMPLATES = [
@@ -94,42 +61,17 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
-                'djconfig.context_processors.config',
             ],
         },
     },
 ]
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'spirit_cache',
-    },
-    'st_rate_limit': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'spirit_rl_cache',
-        'TIMEOUT': None
-    }
-}
-
-AUTHENTICATION_BACKENDS = [
-    'spirit.user.auth.backends.UsernameAuthBackend',
-    'spirit.user.auth.backends.EmailAuthBackend',
-]
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(BASE_DIR, 'st_search'),
-    },
-}
 
 ROOT_URLCONF = 'wedding.urls'
 
 WSGI_APPLICATION = 'wedding.wsgi.application'
 
-LOGIN_URL = 'spirit:user:auth:login'
-LOGIN_REDIRECT_URL = 'spirit:user:update'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

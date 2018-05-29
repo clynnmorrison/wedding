@@ -1,84 +1,146 @@
 # -*- coding: utf-8 -*-
 
-# MINIMAL CONFIGURATION FOR PRODUCTION ENV
+# THIS IS FOR DEVELOPMENT ENVIRONMENT
+# DO NOT USE IT IN PRODUCTION
 
-# Create your own prod_local.py
+# Create your own dev_local.py
 # import * this module there and use it like this:
-# python manage.py runserver --settings=wedding_forum.settings.prod_local
+# python manage.py runserver --settings=wedding_forum.settings.dev_local
 
 from __future__ import unicode_literals
 
 from .base import *
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# https://docs.djangoproject.com/en/1.11/ref/settings/#admins
-ADMINS = (('John', 'john@example.com'), )
+TEMPLATES[0]['OPTIONS']['debug'] = True
+# TEMPLATES[0]['OPTIONS']['string_if_invalid'] = '\{\{%s\}\}'  # Some Django templates relies on this being the default
 
-SECRET_KEY = os.environ.get("SECRET_KEY", '2c0^&u!zm)xfrobd%bab^x0^s@h$fs3xg&w5x(7y9^k@9xy^$!')
+ADMINS = (('John', 'john@example.com'), )  # Log email to console when DEBUG = False
 
-# https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['.example.com', ]
+SECRET_KEY = '*y2v^xpcepjba!tkwmcg+#=133q$wrey_n8$08tq&2e65jiq5&'
 
-# You can change this to something like 'MyForum <noreply@example.com>'
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # Django default
-SERVER_EMAIL = DEFAULT_FROM_EMAIL  # For error notifications
+ALLOWED_HOSTS = [u'finkedave.pythonanywhere.com']
 
-# Email sending timeout
-EMAIL_TIMEOUT = 20  # Default is None (infinite)
-
-# Extend the Spirit installed apps
-# Check out the .base.py file for more examples
-INSTALLED_APPS.extend([
-    # 'my_app1',
-])
+# INSTALLED_APPS.extend([
+#    'debug_toolbar',
+# ])
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydatabase',
-        'USER': 'mydatabaseuser',
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'spirit_cache',
+    },
+    'st_rate_limit': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'spirit_rl_cache',
+        'TIMEOUT': None
     }
 }
 
-# These are all the languages Spirit provides.
-# https://www.transifex.com/projects/p/spirit/
-gettext_noop = lambda s: s
-LANGUAGES = [
-    ('de', gettext_noop('German')),
-    ('en', gettext_noop('English')),
-    ('es', gettext_noop('Spanish')),
-    ('fr', gettext_noop('French')),
-    ('hu', gettext_noop('Hungarian')),
-    ('it', gettext_noop('Italian')),
-    ('lt', gettext_noop('Lithuanian')),
-    ('pl', gettext_noop('Polish')),
-    ('pl-pl', gettext_noop('Poland Polish')),
-    ('ru', gettext_noop('Russian')),
-    ('sv', gettext_noop('Swedish')),
-    ('tr', gettext_noop('Turkish')),
-    ('zh-hans', gettext_noop('Simplified Chinese')),
+AUTHENTICATION_BACKENDS = [
+    'spirit.user.auth.backends.UsernameAuthBackend',
+    'spirit.user.auth.backends.EmailAuthBackend',
 ]
 
-# Default language
-LANGUAGE_CODE = 'en'
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'st_search'),
+    },
+}
 
-# Keep templates in memory
-del TEMPLATES[0]['APP_DIRS']
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
+CACHES.update({
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'st_rate_limit': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'spirit_rl_cache',
+        'TIMEOUT': None
+    }
+})
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.MD5PasswordHasher',
 ]
 
-# Append the MD5 hash of the file’s content to the filename
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+
+LOGIN_URL = 'spirit:user:auth:login'
+LOGIN_REDIRECT_URL = 'spirit:user:update'
+
+
+INSTALLED_APPS.extend([
+    'spirit.core',
+    'spirit.admin',
+    'spirit.search',
+
+    'spirit.user',
+    'spirit.user.admin',
+    'spirit.user.auth',
+
+    'spirit.category',
+    'spirit.category.admin',
+
+    'spirit.topic',
+    'spirit.topic.admin',
+    'spirit.topic.favorite',
+    'spirit.topic.moderate',
+    'spirit.topic.notification',
+    'spirit.topic.poll',  # todo: remove in Spirit v0.6
+    'spirit.topic.private',
+    'spirit.topic.unread',
+
+    'spirit.comment',
+    'spirit.comment.bookmark',
+    'spirit.comment.flag',
+    'spirit.comment.flag.admin',
+    'spirit.comment.history',
+    'spirit.comment.like',
+    'spirit.comment.poll',
+    'djconfig',
+    'haystack',
+])
+
+
+MIDDLEWARE_CLASSES.extend([
+'spirit.user.middleware.TimezoneMiddleware',
+'spirit.user.middleware.LastIPMiddleware',
+'spirit.user.middleware.LastSeenMiddleware',
+'spirit.user.middleware.ActiveUserMiddleware',
+'spirit.core.middleware.PrivateForumMiddleware',
+'djconfig.middleware.DjConfigMiddleware',
+        ])
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                'djconfig.context_processors.config',
+            ],
+        },
+    },
+]

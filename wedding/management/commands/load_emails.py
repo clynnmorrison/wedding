@@ -21,3 +21,5 @@ class Command(BaseCommand):
         user.is_staff=True
         user.is_superuser=True
         user.save()
+
+#user = User.objects.create_user("admin", password='password')
