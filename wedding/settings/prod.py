@@ -13,7 +13,7 @@ from .base import *
 
 
 DEBUG = True
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 TEMPLATES[0]['OPTIONS']['debug'] = True
 # TEMPLATES[0]['OPTIONS']['string_if_invalid'] = '\{\{%s\}\}'  # Some Django templates relies on this being the default
 
@@ -129,6 +129,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
+        'DIRS': [
+            BASE_DIR + "/templates",
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
