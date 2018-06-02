@@ -11,12 +11,17 @@ import spirit.urls
 
 # Override admin login for security purposes
 from django.contrib.auth.decorators import login_required
+from wedding import views
 admin.site.login = login_required(admin.site.login)
 
 
 urlpatterns = [
-    url(r'^', include(spirit.urls)),
+    #url(r'^song-requests/', TemplateView.as_view(template_name='wedding/song_requests.html')),
+    url(r'^suggestions', views.suggestions),
+    url(r'^suggest', views.suggest),
+    url(r'^faq', include(spirit.urls)),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', views.render_wedding_woo),
 ]
 
 if settings.DEBUG:
