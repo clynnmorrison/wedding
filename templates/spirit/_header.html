@@ -1,14 +1,9 @@
 {% load spirit_tags i18n %}
-    <style>
-body {
-   background-image: url("https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=1600&h=1200");
-   background-color: transparent;
-}
-</style>
+
     <header class="header js-tabs-container">
 		<a class="header-logo" href="{% url "spirit:index" %}">FAQ</a>
         <br/>
-        <a class="header-logo" href="/" style="color:#ffecc9;font-size:26px">Back to Wedding Site</a>
+        <a href="/" style="color:blue;">Back to Wedding Site</a>
         {% if user.is_authenticated %}
             {% has_topic_notifications user as has_notifications %}
 
