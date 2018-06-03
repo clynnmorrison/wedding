@@ -1,9 +1,22 @@
 {% load spirit_tags i18n %}
 
     <header class="header js-tabs-container">
-		<a class="header-logo" href="{% url "spirit:index" %}">FAQ</a>
-        <br/><br/>s
-        <a href="/" style="color:blue;">Back to Wedding Site</a>
+        <table>
+          <tr>
+            <td> <img src="https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=200&h=150"/> </td>
+            <td>
+              <a class="header-logo" href="{% url "spirit:index" %}">FAQ</a>
+              <br/><br/>
+              <a href="/" style="color:blue;">Back to Wedding Site</a>
+              
+            </td>
+
+          </tr>
+
+        </table>
+       FAQ
+
+
         {% if user.is_authenticated %}
             {% has_topic_notifications user as has_notifications %}
 
