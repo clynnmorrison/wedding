@@ -1,110 +1,14 @@
 {% load spirit_tags i18n %}
-
-<link rel="stylesheet" media="screen, print" href="//d3qif39x2jyjyc.cloudfront.net/assets/homepage-822b4a83a41de1c04c3b7ac8db58518f9bb55be4c48b412aebced53f87e814d5.css" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/blackout-6ab83844ca40f853e405684a2185655336f459d889fc6d056e48688448383795.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/ostrich-sans-black-98bc28367ab6e5eeac22f5ad3084362e17e779a820c0f97477dccf873ace0e00.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/roboto-ff098753f8b19d64c4ede390a732148220e3144114171219ea825ca4a217d77a.css" rel="stylesheet" type="text/css" media="screen" />
-<style>
-  <style type="text/css" media="screen">
-      #control_color_backdrop { background-color: #EAECF0; }
-#control_color_background_about { background-color: #000000; }
-#control_color_background_navi { background-color: #000000; }
-#control_color_background_content { background-color: #292729; }
-#control_color_text_about_name { background-color: #ffecc9; }
-#control_color_text_about_date { background-color: #ffecc9; }
-#control_color_text_about_location { background-color: #ffecc9; }
-#control_color_text_about_message { background-color: #ffecc9; }
-#control_color_text_navigation_links { background-color: #ffecc9; }
-#control_color_text_content { background-color: #ffecc9; }
-#control_color_text_headers { background-color: #ffecc9; }
-#control_color_text_links { background-color: #2e4854; }
-#about { background: rgba(0,0,0,0.0); }
-#navi { background: rgba(0,0,0,0.0); }
-#content { background: rgba(41,39,41,0.28); }
-.backdrop { background: #EAECF0; }
-#dashboard-macbookair-overlay, #dashboard-ipadmini-overlay, #layouts-mobile-wrap { background: #EAECF0; }
-#about_name { color: #ffecc9; }
-#about_date { color: #ffecc9; }
-#about_location { color: #ffecc9; }
-#about_message { color: #ffecc9; }
-#content { color: #ffecc9; }
-#container a, #container a:visited, #container a:active, #container a:hover { color: #2e4854; }
-#navigation_links li a, #navigation_links li a:visited, #navigation_links li a:active, #navigation_links li a:hover { color: #ffecc9; }
-#content h1 { color: #ffecc9; }
-#content h2 { color: #ffecc9; }
-#content h3 { color: #ffecc9; }
-#about_name { font-size: 48px; }
-#about_date { font-size: 36px; }
-#about_location { font-size: 24px; }
-#about_message { font-size: 12px; }
-#content { font-size: 16px; }
-#navigation_links { font-size: 26px; }
-#content h1 { font-size: 32px; }
-#content h2 { font-size: 24px; }
-#content h3 { font-size: 18px; }
-#about_name { font-family: 'Langdon'; }
-#about_date { font-family: 'Langdon'; }
-#about_location { font-family: 'Blackout'; }
-#about_message { font-family: 'Langdon'; }
-#navigation_links { font-family: 'Ostrich Sans Black'; }
-#content { font-family: 'Roboto'; }
-#content h1 { font-family: 'Ostrich Sans Black'; }
-#content h2 { font-family: 'Roboto'; }
-#content h3 { font-family: 'Roboto'; }
-#content h1 { text-align: left; }
-#content h2 { text-align: left; }
-#about_date { text-transform: capitalize; }
-
-
-        #rsvp-next #rsvp-next-content {
-          background-color: #080708;
-          color: #ffecc9;
-          border-radius: 15px;
-        }
-
-        #rsvp-next {
-          background-color: #080708;
-          border-radius: 4px;
-          padding: 14px;
-        }
-
-        #rsvp-next #rsvp-next-content #rsvp-next-message {
-          color: #ffecc9;
-          font-size: 24px;
-        }
-
-        #rsvp-next #rsvp-next-content .field-label-display {
-          color: #ffecc9;
-          font-size: 16px;
-        }
-        #rsvp-next #rsvp-next-content .field-text-display {
-          color: #000000;
-          font-size: 16px;
-        }
-
-        #rsvp-next #rsvp-next-content button[type="submit"], #rsvp-next #rsvp-next-content input[type="submit"], #rsvp-next #rsvp-next-content a[data-remote] {
-          background: #6d97cc;
-          color: #FFFFFF;
-          font-size: 14px;
-          border-radius: 4px;
-          padding: 6px 12px;
-        }
-
-    </style>
-
+    <style>
+body {
+   background-image: url("https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=275&h=250", "https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=1600&h=1200");
+   background-color: #cccccc;
+}
 </style>
     <header class="header js-tabs-container">
-          <div id="about">
-            <h1 id="about_name"><span id="about_bride_name">Courtney</span> <span id="about_names_link">&amp;</span> <span id="about_groom_name">Dave</span></h1>
-            <h2 id="about_date">May 26, 2019</h2>
-            <h3 id="about_location">The Mohicans, Glenmont Ohio</h3>
-            <div id="about_message" style="display:block"><p>We are ready to something something</p>
-            <p><br></p></div>
-          </div>
-
-
-
-
+		<a class="header-logo" href="{% url "spirit:index" %}">FAQ</a>
+        <br/>
+        <a class="header-logo" href="/" style="color:#ffecc9;font-size:26px">Back to Wedding Site</a>
         {% if user.is_authenticated %}
             {% has_topic_notifications user as has_notifications %}
 
@@ -144,4 +48,3 @@
             <a class="header-link" href="{% url "spirit:user:auth:login" %}?next={% firstof request.get_full_path|urlencode '/' %}">{% trans "Log in" %}</a>
         {% endif %}
 	</header>
-
