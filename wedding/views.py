@@ -1,8 +1,11 @@
 from django.http import HttpResponse
 import urllib
-
+from django.shortcuts import render
 import urllib2
 from django.views.decorators.csrf import csrf_exempt
+from wedding import forms
+from wedding.models import Rsvp
+from django.forms.models import modelformset_factory
 
 def render_wedding_woo(request):
     req = urllib2.Request('http://candwedding.weddingwoo.com'+request.path_info)
@@ -44,3 +47,17 @@ def suggest(request):
     the_page = response.read()
     return HttpResponse(the_page,content_type='text/javascript; charset=utf-8')
 
+def rsvp(request):
+    from django.forms.formsets import formset_factory
+    RsvpFormset = modelformset_factory(Rsvp, form=forms.RsvpForm, extra=0)
+
+    if request.POST:
+        formset = RsvpFormset(request.POST, queryset=request.user.rsvp_set.all())
+        if formset.is_valid():
+            formset.save()
+        print formset.errors
+    rsvp_formset = RsvpFormset(queryset=request.user.rsvp_set.all())
+    user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0])
+
+    return render(request, 'wedding/rsvp.html', {'rsvp_formset': rsvp_formset,
+                                                 'user_profile_form': user_profile_form})

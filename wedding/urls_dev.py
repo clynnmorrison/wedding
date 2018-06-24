@@ -13,9 +13,9 @@ from wedding import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^song-requests/', TemplateView.as_view(template_name='wedding/song_requests.html')),
     url(r'^suggestions', views.suggestions),
     url(r'^suggest', views.suggest),
+    url(r'^rsvp', views.rsvp),
     url(r'^', views.render_wedding_woo),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

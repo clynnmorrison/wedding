@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+    <form method="post" novalidate>
+        {{rsvp_formset.management_form}}
+        {% csrf_token %}
+
+
+
+        <table>
+            <tr>
+                <td>Attendance:</td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                               <th style="text-align:left">Name</th>
+                               <th>Attending</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rsvp_form in rsvp_formset %}
+                            {{rsvp_form.id}}
+                            {{rsvp_form.user}}
+
+                            <tr>
+                                <td>
+                                    {% if rsvp_form.instance.is_plus_one %}
+                                        {{rsvp_form.name}}
+                                    {% else %}
+                                        {{rsvp_form.name.value}}
+                                        <input type="hidden" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}"/>
+                                    {% endif %}
+                                </td>
+                                <td>{{rsvp_form.attending}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Mailing Address:</td>
+                <td>{{user_profile_form.mailing_address}}</td>
+            </tr>
+            <tr>
+                <td>Comments:</td>
+                <td>{{user_profile_form.comments}}</td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit RSVP"/>
+    </form>
+
+
+
+</body>
+</html>
