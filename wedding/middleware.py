@@ -17,7 +17,7 @@ class EnforceUserLogin(object):
     def process_response(self, request, response):
         if request.user.is_anonymous():
             return response
-        response.content = re.sub(r'href="(.*?)"', r'href="\g<1>?user='+request.user.username+'"', response.content)
+        response.content = re.sub(r'href="(.*?)"', r'href="\g<1>?user='+request.user.username+'"', response.content.decode('utf-8').strip())
         return response
 
     def forbidden(self, request):
