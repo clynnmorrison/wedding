@@ -4,7 +4,7 @@ from django.forms.formsets import BaseFormSet
 from django import forms
 from django.utils.safestring import mark_safe
 
-class HorizontalRadioRenderer(forms.RadioSelect.renderer):
+class HorizontalRadioRenderer(forms.RadioSelect):
   def render(self):
     return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
 
