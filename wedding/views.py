@@ -49,7 +49,7 @@ def suggest(request):
 
 def rsvp(request):
     RsvpFormset = modelformset_factory(Rsvp, form=forms.RsvpForm, extra=0)
-
+    success_rsvp = False;
     if request.POST:
         formset = RsvpFormset(request.POST, queryset=request.user.rsvp_set.all())
         if formset.is_valid():
@@ -59,9 +59,11 @@ def rsvp(request):
                                                   prefix="user_profile_form")
         if user_profile_form.is_valid():
             user_profile_form.save()
+        success_rsvp = True;
     rsvp_formset = RsvpFormset(queryset=request.user.rsvp_set.all())
     user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0],
                                               prefix="user_profile_form")
 
     return render(request, 'wedding/rsvp.html', {'rsvp_formset': rsvp_formset,
-                                                 'user_profile_form': user_profile_form})
+                                                 'user_profile_form': user_profile_form,
+                                                 'success_rsvp': success_rsvp})

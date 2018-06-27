@@ -1,122 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
-    <script>
-
-        $( document ).ready(function() {
-            $("#id_user_profile_form-mailing_address").prop("required", true);
-        });
-
-        function submit_rsvp()
-        {
-            $("#rsvp_form").parsley().destroy();
-
-            $("input.guest_name").removeAttr("required");
-
-            $("input[name$='attending'][value='True']:checked").each(
-                function(){
-                    attending_html_name = $(this).attr('name');
-                    name_html_name = attending_html_name.replace('attending', 'name')
-                    guest_name_input = $("input.guest_name[name='"+name_html_name+"']")[0]
-
-                    if(typeof guest_name_input != "undefined")
-                    {
-                        $(guest_name_input).prop("required", true);
-                    }
-                }
-            )
-            $("#rsvp_form").parsley().validate();
-            return $("#rsvp_form").parsley().isValid();
-        }
-    </script>
-    <style>
-        .parsley-errors-list {
-          margin: 2px 0 3px;
-          padding: 0;
-          list-style-type: none;
-          font-size: 0.9em;
-          line-height: 0.9em;
-          opacity: 0;
-
-          transition: all .3s ease-in;
-          -o-transition: all .3s ease-in;
-          -moz-transition: all .3s ease-in;
-          -webkit-transition: all .3s ease-in;
-        }
-
-        .parsley-errors-list.filled {
-          opacity: 1;
-        }
-
-        .parsley-required {color: #B94A48;}
-    </style>
-</head>
-<body>
-
-    <form method="post" novalidate id="rsvp_form" onsubmit="return submit_rsvp()">
-        {{rsvp_formset.management_form}}
-        {% csrf_token %}
-
-        <table>
-            <tr>
-                <td>Attendance:</td>
-                <td>
-                    <table>
-                        <thead>
-                            <tr>
-                               <th style="text-align:left">Name</th>
-                               <th>Attending</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for rsvp_form in rsvp_formset %}
-                            {{rsvp_form.id}}
-                            {{rsvp_form.user}}
-
-                            <tr>
-                                <td>
-                                    {% if rsvp_form.instance.is_plus_one %}
-                                        <input type="text" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}" class="guest_name"/>
-                                    {% else %}
-                                        {{rsvp_form.name.value}}
-                                        <input type="hidden" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}"/>
-                                    {% endif %}
-                                </td>
-                                <td>{{rsvp_form.attending}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr>
-                <td>Mailing Address:</td>
-                <td>{{user_profile_form.mailing_address}}</td>
-            </tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr>
-                <td>Comments<br/>(Optional):</td>
-                <td>{{user_profile_form.comments}}</td>
-            </tr>
-        </table>
-        <input type="submit" value="Submit RSVP"/>
-    </form>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -207,42 +88,31 @@
 #about_date { text-transform: capitalize; }
 
 
-        #rsvp-next #rsvp-next-content {
-          background-color: #080708;
-          color: #ffecc9;
-          border-radius: 15px;
-        }
 
-        #rsvp-next {
-          background-color: #080708;
-          border-radius: 4px;
-          padding: 14px;
-        }
-
-        #rsvp-next #rsvp-next-content #rsvp-next-message {
-          color: #ffecc9;
-          font-size: 24px;
-        }
-
-        #rsvp-next #rsvp-next-content .field-label-display {
-          color: #ffecc9;
-          font-size: 16px;
-        }
-        #rsvp-next #rsvp-next-content .field-text-display {
-          color: #000000;
-          font-size: 16px;
-        }
-
-        #rsvp-next #rsvp-next-content button[type="submit"], #rsvp-next #rsvp-next-content input[type="submit"], #rsvp-next #rsvp-next-content a[data-remote] {
-          background: #6d97cc;
-          color: #FFFFFF;
-          font-size: 14px;
-          border-radius: 4px;
-          padding: 6px 12px;
-        }
 
     </style>
+        <style>
+        .parsley-errors-list {
+          margin: 2px 0 3px;
+          padding: 0;
+          list-style-type: none;
+          font-size: 0.9em;
+          line-height: 0.9em;
+          opacity: 0;
 
+          transition: all .3s ease-in;
+          -o-transition: all .3s ease-in;
+          -moz-transition: all .3s ease-in;
+          -webkit-transition: all .3s ease-in;
+        }
+
+        .parsley-errors-list.filled {
+          opacity: 1;
+        }
+
+        .parsley-required {color: #90ee90}
+        input[type='radio'] {margin-left:5px;}
+    </style>
     <!--[if lte IE 8]>
       <style type="text/css" media="screen">
         #about { -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, StartColorStr='#00000000', EndColorStr='#00000000')"; filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#00000000', EndColorStr='#00000000'); zoom: 1!important; }
@@ -253,13 +123,42 @@
 
   <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="mDbALfqfa6JqcblGYTdj2jUuKtjbNw4zyzVl7GxOUT9gaPsjIP5SmBfyS8b9Ca5RgiYGQGDCVFkDkeDT7jGM2Q==" />
-  <script src="//d3qif39x2jyjyc.cloudfront.net/assets/modernizr-91790f181496662dea959bc3feda43ee6a1742653138f9c872a47b2c33602e45.js"></script>
+
+
+    <script src="//d3qif39x2jyjyc.cloudfront.net/assets/modernizr-91790f181496662dea959bc3feda43ee6a1742653138f9c872a47b2c33602e45.js"></script>
   <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-37150574-1']);
   _gaq.push(['_setDomainName', 'weddingwoo.com']);
   _gaq.push(['_trackPageview']);
   </script>
+
+    <script>
+
+
+        function submit_rsvp()
+        {
+            $("#rsvp_form").parsley().destroy();
+
+            $("input.guest_name").removeAttr("required");
+
+            $("input[name$='attending'][value='True']:checked").each(
+                function(){
+                    attending_html_name = $(this).attr('name');
+                    name_html_name = attending_html_name.replace('attending', 'name')
+                    guest_name_input = $("input.guest_name[name='"+name_html_name+"']")[0]
+
+                    if(typeof guest_name_input != "undefined")
+                    {
+                        $(guest_name_input).prop("required", true);
+                    }
+                }
+            )
+            $("#rsvp_form").parsley().validate();
+            return $("#rsvp_form").parsley().isValid();
+        }
+
+    </script>
 
 </head>
 
@@ -309,36 +208,70 @@
 
   </div>
     <div id="content" data-pjax-container>
-    <div id="rsvp">
+    <span id="rsvp">
   <h1>RSVP</h1>
+    {% if success_rsvp %}
+        <span style="color: #90ee90">Thank you for RSVPing</span>
+        <br/>
+        <br/>
+    {% endif %}
+
+    <form method="post" novalidate id="rsvp_form" onsubmit="return submit_rsvp()">
+        {{rsvp_formset.management_form}}
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td>Attendance:</td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                               <th style="text-align:left">Name</th>
+                               <th>Attending</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rsvp_form in rsvp_formset %}
+                            {{rsvp_form.id}}
+                            {{rsvp_form.user}}
+
+                            <tr>
+                                <td>
+                                    {% if rsvp_form.instance.is_plus_one %}
+                                        <input type="text" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}" class="guest_name"/>
+                                    {% else %}
+                                        {{rsvp_form.name.value}}
+                                        <input type="hidden" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}"/>
+                                    {% endif %}
+                                </td>
+                                <td>{{rsvp_form.attending}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td>Mailing Address:</td>
+                <td>{{user_profile_form.mailing_address}}</td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td>Comments<br/>(Optional):</td>
+                <td>{{user_profile_form.comments}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="right"><br/><input type="submit" value="Submit RSVP"/></td>
+            </tr>
+        </table>
+
+    </form>
 
 
 
-    <div id="rsvp-next">
-  <div id="rsvp-next-content">
-    <div id="rsvp-next-message">
-  You're invited to our wedding celebration! Please RSVP so we can accommodate you.
-</div>
-
-<div id="rsvp-next-form-content">
-  <form id="rsvp-next-form" action="http://candwedding.weddingwoo.com/rsvp_next/find" accept-charset="UTF-8" data-remote="true" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
-    <fieldset class="full-name">
-      <label class="field-label-display" for="full-name">Your full name</label>
-      <div class="full-name-fields clearfix">
-        <div class="first-name name"><input type="text" name="guest[first_name]" id="guest_first_name" placeholder="First Name" class="required field-text-display" /></div>
-        <div class="last-name name"><input type="text" name="guest[last_name]" id="guest_last_name" placeholder="Last Name" class="required field-text-display" /></div>
-      </div>
-    </fieldset>
-
-      <fieldset>
-        <label class="field-label-display" for="email">Your email</label>
-        <input type="text" name="guest[email]" id="guest_email" placeholder="contact@example.com" class="required email field-text-display" />
-      </fieldset>
-
-    <fieldset class="submit">
-      <input type="submit" name="commit" value="Next" class="next" data-disable-with="Next" />
-    </fieldset>
-</form></div>
   </div>
 </div>
 </div>
@@ -372,16 +305,22 @@
       </div>
     <div class="backdrop"><div class="background"></div></div>
 <script src="//d3qif39x2jyjyc.cloudfront.net/assets/homepage-671ee345d92005b1e959c6478196ce228af7490c8c3ff971ba35abe93caa900b.js"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
+
+<script>
+        $( document ).ready(function() {
+            $("#id_user_profile_form-mailing_address").prop("required", true);
+            submit_rsvp()
+        });
+</script>
+
   <script>
     new BackgroundImage("https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=275&h=250", "https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=1600&h=1200", {horizontal: "50", vertical: "50", scaling: "fill"}).loadBackground();
   </script>
-
-
-
-
-
-
-
 
 
 
