@@ -48,16 +48,20 @@ def suggest(request):
     return HttpResponse(the_page,content_type='text/javascript; charset=utf-8')
 
 def rsvp(request):
-    from django.forms.formsets import formset_factory
     RsvpFormset = modelformset_factory(Rsvp, form=forms.RsvpForm, extra=0)
 
     if request.POST:
         formset = RsvpFormset(request.POST, queryset=request.user.rsvp_set.all())
         if formset.is_valid():
             formset.save()
-        print formset.errors
+
+        user_profile_form = forms.UserProfileForm(request.POST, instance=request.user.userprofile_set.all()[0],
+                                                  prefix="user_profile_form")
+        if user_profile_form.is_valid():
+            user_profile_form.save()
     rsvp_formset = RsvpFormset(queryset=request.user.rsvp_set.all())
-    user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0])
+    user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0],
+                                              prefix="user_profile_form")
 
     return render(request, 'wedding/rsvp.html', {'rsvp_formset': rsvp_formset,
                                                  'user_profile_form': user_profile_form})

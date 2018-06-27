@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Rsvp(models.Model):
     user = models.ForeignKey(User)
-    name = models.CharField(max_length=200, default="Guest")
+    name = models.CharField(max_length=200, blank=True, null=True)
     is_plus_one = models.BooleanField(default=False)
     attending = models.NullBooleanField()
 
