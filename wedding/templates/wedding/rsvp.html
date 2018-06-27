@@ -112,6 +112,33 @@
 
         .parsley-required {color: #90ee90}
         input[type='radio'] {margin-left:5px;}
+
+
+        /* RADIO BUTTONS */
+
+form ul.radiolist li {
+    list-style-type: none;
+}
+
+form ul.radiolist label {
+    float: none;
+    display: inline;
+}
+
+form ul.radiolist input[type="radio"] {
+    margin: -2px 4px 0 0;
+    padding: 0;
+}
+
+form ul.inline {
+    margin-left: 0;
+    padding: 0;
+}
+
+form ul.inline li {
+    float: left;
+    padding-right: 7px;
+}
     </style>
     <!--[if lte IE 8]>
       <style type="text/css" media="screen">
@@ -239,7 +266,7 @@
                             <tr>
                                 <td>
                                     {% if rsvp_form.instance.is_plus_one %}
-                                        <input type="text" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}" class="guest_name"/>
+                                        <input type="text" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value|default:''}}" class="guest_name"/>
                                     {% else %}
                                         {{rsvp_form.name.value}}
                                         <input type="hidden" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}"/>
@@ -314,7 +341,6 @@
 <script>
         $( document ).ready(function() {
             $("#id_user_profile_form-mailing_address").prop("required", true);
-            submit_rsvp()
         });
 </script>
 

@@ -21,7 +21,7 @@ ADMINS = (('John', 'john@example.com'), )  # Log email to console when DEBUG = F
 
 SECRET_KEY = '*y2v^xpcepjba!tkwmcg+#=133q$wrey_n8$08tq&2e65jiq5&'
 
-ALLOWED_HOSTS = [u'finkedave.pythonanywhere.com'] 
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # INSTALLED_APPS.extend([
 #    'debug_toolbar',

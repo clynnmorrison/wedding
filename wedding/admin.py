@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import Rsvp, UserProfile
 
 class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "mailing_address", "comments")
     model = UserProfile
 
 class RsvpAdmin(admin.ModelAdmin):

@@ -12,7 +12,7 @@ class RsvpForm(ModelForm):
     attending = forms.TypedChoiceField(
         coerce=lambda x: x == 'True',
         choices=((True, 'Yes'), (False, 'No')),
-        widget=HorizontalRadioWidget
+        widget=forms.RadioSelect(attrs={'class': 'inline'})
     )
     class Meta:
         model = Rsvp
