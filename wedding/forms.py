@@ -4,7 +4,7 @@ from django.forms.formsets import BaseFormSet
 from django import forms
 from django.utils.safestring import mark_safe
 
-class HorizontalRadioRenderer(forms.RadioSelect):
+class HorizontalRadioWidget(forms.RadioSelect):
   def render(self):
     return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
 
@@ -12,7 +12,7 @@ class RsvpForm(ModelForm):
     attending = forms.TypedChoiceField(
         coerce=lambda x: x == 'True',
         choices=((True, 'Yes'), (False, 'No')),
-        widget=forms.RadioSelect(renderer=HorizontalRadioRenderer)
+        widget=HorizontalRadioWidget
     )
     class Meta:
         model = Rsvp
