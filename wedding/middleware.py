@@ -4,10 +4,9 @@ from django.shortcuts import render
 
 class EnforceUserLogin(object):
     def process_request(self, request):
-        if not request.user.is_authenticated():
-            username = request.GET.get("user")
+        username = request.GET.get("user", None)
+        if not request.user.is_authenticated() or (username and username != request.user.username):
             print username
-            print authenticate(username=username, password='password')
             if username:
                 user = authenticate(username=username, password='password')
                 if user:

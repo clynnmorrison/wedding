@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 import urllib
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import urllib2
 from django.views.decorators.csrf import csrf_exempt
 from wedding import forms
@@ -9,9 +9,12 @@ from django.forms.models import modelformset_factory
 
 def render_wedding_woo(request):
     req = urllib2.Request('http://candwedding.weddingwoo.com'+request.path_info)
-    response = urllib2.urlopen(req)
-    the_page = response.read().replace("http://candwedding.weddingwoo.com", "")
-    return HttpResponse(the_page)
+    try:
+        response = urllib2.urlopen(req)
+        the_page = response.read().replace("http://candwedding.weddingwoo.com", "")
+        return HttpResponse(the_page)
+    except urllib2.HTTPError, e:
+        return redirect("/")
 
 def suggestions(request):
     args = {"term": request.GET.get("term")}
@@ -54,7 +57,6 @@ def rsvp(request):
         formset = RsvpFormset(request.POST, queryset=request.user.rsvp_set.all())
         if formset.is_valid():
             formset.save()
-
         user_profile_form = forms.UserProfileForm(request.POST, instance=request.user.userprofile_set.all()[0],
                                                   prefix="user_profile_form")
         if user_profile_form.is_valid():

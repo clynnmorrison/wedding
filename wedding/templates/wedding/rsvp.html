@@ -111,9 +111,11 @@
         }
 
         .parsley-required {color: #90ee90}
-        input[type='radio'] {margin-left:5px;}
+        input[type='radio'][value='True'] {margin-left:15px;}
 
-
+        #error_container{
+            color: #90ee90
+        }
         /* RADIO BUTTONS */
 
 form ul.radiolist li {
@@ -166,9 +168,15 @@ form ul.inline li {
         function submit_rsvp()
         {
             $("#rsvp_form").parsley().destroy();
-
+            $("#error_container").html("")
             $("input.guest_name").removeAttr("required");
 
+            accounted_for = $("input[name$='attending'][value='True']:checked").length + $("input[name$='attending'][value='False']:checked").length
+            if(accounted_for < {{rsvp_formset|length}} )
+            {
+                $("#error_container").html("All guests must accounted for in the RSVP<br/><br/>")
+                return false;
+            }
             $("input[name$='attending'][value='True']:checked").each(
                 function(){
                     attending_html_name = $(this).attr('name');
@@ -242,20 +250,23 @@ form ul.inline li {
         <br/>
         <br/>
     {% endif %}
+    <div id="error_container">
 
+    </div>
     <form method="post" novalidate id="rsvp_form" onsubmit="return submit_rsvp()">
         {{rsvp_formset.management_form}}
         {% csrf_token %}
 
         <table>
             <tr>
-                <td>Attendance:</td>
+                <td style="vertical-align:middle">Attendance:</td>
                 <td>
                     <table>
                         <thead>
                             <tr>
-                               <th style="text-align:left">Name</th>
-                               <th>Attending</th>
+                               <th style="text-align:left;vertical-align:middle">Name</th>
+                               <th style="text-align:center;vertical-align:middle">Attending</th>
+                               <th><span style="margin-left:10px"></span>Vegetarian Meal</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -266,13 +277,14 @@ form ul.inline li {
                             <tr>
                                 <td>
                                     {% if rsvp_form.instance.is_plus_one %}
-                                        <input type="text" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value|default:''}}" class="guest_name"/>
+                                        <input type="text" style="width:130px;" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value|default:''}}" class="guest_name"/>
                                     {% else %}
                                         {{rsvp_form.name.value}}
                                         <input type="hidden" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}"/>
                                     {% endif %}
                                 </td>
                                 <td>{{rsvp_form.attending}}</td>
+                                <td style="text-align:center">{{rsvp_form.vegetarian_meal}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -341,7 +353,6 @@ form ul.inline li {
 <script>
         $( document ).ready(function() {
             $("#id_user_profile_form-mailing_address").prop("required", true);
-            $("input[type='radio']").prop("required", true);
         });
 </script>
 

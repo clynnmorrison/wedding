@@ -4,19 +4,14 @@ from django.forms.formsets import BaseFormSet
 from django import forms
 from django.utils.safestring import mark_safe
 
-class HorizontalRadioWidget(forms.RadioSelect):
-  def render(self):
-    return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
-
 class RsvpForm(ModelForm):
-    attending = forms.TypedChoiceField(
-        coerce=lambda x: x == 'True',
+    attending = forms.ChoiceField(
         choices=((True, 'Yes'), (False, 'No')),
         widget=forms.RadioSelect(attrs={'class': 'inline'})
     )
     class Meta:
         model = Rsvp
-        fields = ['name', 'attending']
+        fields = ['name', 'attending', 'vegetarian_meal']
 
 class UserProfileForm(ModelForm):
    mailing_address = forms.CharField(widget=forms.Textarea)

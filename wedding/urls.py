@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^rsvp', views.rsvp, name="rsvp"),
     url(r'^faq', include(spirit.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', views.render_wedding_woo),
+    url(r'^', views.render_wedding_woo, name="home"),
 ]
 
 if settings.DEBUG:

@@ -10,7 +10,7 @@ class Rsvp(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     is_plus_one = models.BooleanField(default=False)
     attending = models.NullBooleanField()
-
+    vegetarian_meal = models.BooleanField(default=False)
     def __str__ (self):
         return self.name if self.name else "Guest"
 
