@@ -61,6 +61,7 @@ def rsvp(request):
                                                   prefix="user_profile_form")
         if user_profile_form.is_valid():
             user_profile_form.save()
+        print user_profile_form.errors
         success_rsvp = True;
     rsvp_formset = RsvpFormset(queryset=request.user.rsvp_set.all())
     user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0],

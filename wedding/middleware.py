@@ -6,7 +6,6 @@ class EnforceUserLogin(object):
     def process_request(self, request):
         username = request.GET.get("user", None)
         if not request.user.is_authenticated() or (username and username != request.user.username):
-            print username
             if username:
                 user = authenticate(username=username, password='password')
                 if user:

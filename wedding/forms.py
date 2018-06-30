@@ -14,8 +14,8 @@ class RsvpForm(ModelForm):
         fields = ['name', 'attending', 'vegetarian_meal']
 
 class UserProfileForm(ModelForm):
-   mailing_address = forms.CharField(widget=forms.Textarea)
-
-   class Meta:
-       model = UserProfile
-       fields = ['mailing_address', 'comments']
+    mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}), required=False)
+    comments = forms.CharField(widget=forms.Textarea(attrs={'rows': 5, 'cols': 30}), required=False)
+    class Meta:
+        model = UserProfile
+        fields = ['mailing_address', 'comments']
