@@ -6,7 +6,7 @@
             <td> <img src="https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=100&h=75"/> </td>
             <td><span style="margin-right:30px">&nbsp;</span></td>
             <td>
-              <a class="header-logo" href="{% url "spirit:index" %}">Wedding Forum & FAQ</a>
+              <a class="header-logo" href="{% url "spirit:index" %}">Wedding Forum</a>
               <br/><br/>
               <a href="/" style="color:blue;">Back to Wedding Site</a>
             </td>
@@ -15,36 +15,16 @@
 
         </table>
 
+        Feel free to ask questions, answer questions and start discussions on carpooling, lodging and activities
 
         {% if user.is_authenticated %}
-            {% has_topic_notifications user as has_notifications %}
 
             <ul class="header-tabs">
-                <li><a class="header-tab-link js-tab" href="{% url "spirit:search:search" %}" data-related=".js-search-content"><i class="fa fa-search"></i></a></li><!--
-             --><li><a class="header-tab-link js-tab-notification{% if has_notifications %} is-highlighted{% endif %}" href="{% url "spirit:topic:notification:index" %}" data-related=".js-notifications-content"><i class="fa fa-bell"></i></a></li><!--
-             --><li><a class="header-tab-link js-tab" href="{% url "spirit:user:menu" %}" data-related=".js-user-content">{{ user.username }} <i class="fa fa-chevron-down"></i></a></li>
+                <li><a class="header-tab-link js-tab" href="{% url "spirit:search:search" %}" data-related=".js-search-content"><i class="fa fa-search"></i></a></li>
             </ul>
 
             <div class="header-tabs-content">
 
-                <div class="header-tab-content js-tab-content js-user-content">
-                    <nav class="header-nav">
-                        <ul class="menu">
-                            <li><a class="menu-link" href="{% url "spirit:user:detail" pk=user.pk slug=user.st.slug %}">{% trans "Profile" %}</a></li>
-                            <li><a class="menu-link" href="{% url "spirit:topic:index-active" %}">{% trans "Topics" %}</a></li>
-                            <li><a class="menu-link" href="{% url "spirit:topic:unread:index" %}">{% trans "Unread topics" %}</a></li>
-                            <li><a class="menu-link" href="{% url "spirit:topic:private:index" %}">{% trans "Private topics" %}</a></li>
-
-                            {% if user.st.is_administrator %}
-                                <li><a class="menu-link" href="{% url "spirit:admin:index" %}">{% trans "Admin" %}</a></li>
-                            {% endif %}
-
-                            <li><a class="menu-link js-post" href="{% url "spirit:user:auth:logout" %}?next={% firstof request.get_full_path|urlencode '/' %}">{% trans "Log out" %}</a></li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="header-tab-content js-tab-content js-notifications-content"></div>
 
                 <div class="header-tab-content js-tab-content js-search-content">
                     {% render_search_form %}
