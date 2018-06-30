@@ -145,5 +145,5 @@ STATICFILES_FINDERS = (
 )
 
 
-EMAIL_FROM = "canddwedding@gmail.com"
+EMAIL_FROM = "canddplanning@gmail.com"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
