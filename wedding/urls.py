@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^suggestions', views.suggestions),
     url(r'^suggest', views.suggest),
     url(r'^rsvp', views.rsvp, name="rsvp"),
-    url(r'^question-forum/', include(spirit.urls)),
+    url(r'^question-forum', include(spirit.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', views.render_wedding_woo, name="home"),
 ]
