@@ -14,7 +14,7 @@ class Command(BaseCommand):
         html = template.render({"username": user.username, 'addressee': user.first_name, 'host_url': settings.HOST_URL})
 
         email = EmailMultiAlternatives(
-            subject="Dave & Courtney's wedding save the date",
+            subject="Dave & Courtney’s Wedding – Save the Date !",
             body=html,
             from_email=settings.EMAIL_FROM,
             to=["finke.dave@gmail.com"],
