@@ -1,0 +1,176 @@
+       <style>
+        .parsley-errors-list {
+          margin: 2px 0 3px;
+          padding: 0;
+          list-style-type: none;
+          font-size: 0.9em;
+          line-height: 0.9em;
+          opacity: 0;
+
+          transition: all .3s ease-in;
+          -o-transition: all .3s ease-in;
+          -moz-transition: all .3s ease-in;
+          -webkit-transition: all .3s ease-in;
+        }
+
+        .parsley-errors-list.filled {
+          opacity: 1;
+        }
+
+        .parsley-required {color: #90ee90}
+        input[type='radio'][value='True'] {margin-left:15px;}
+
+        #error_container{
+            color: #90ee90
+        }
+
+        #rsvp_form input:invalid, #rsvp_form textarea:invalid {
+            border-radius: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow:none;
+            box-shadow: none;
+        }
+
+
+        /* RADIO BUTTONS */
+
+form ul.radiolist li {
+    list-style-type: none;
+}
+
+form ul.radiolist label {
+    float: none;
+    display: inline;
+}
+
+form ul.radiolist input[type="radio"] {
+    margin: -2px 4px 0 0;
+    padding: 0;
+}
+
+form ul.inline {
+    margin-left: 0;
+    padding: 0;
+}
+
+form ul.inline li {
+    float: left;
+    padding-right: 7px;
+}
+    </style>
+
+        <script>
+
+
+        function submit_rsvp()
+        {
+            $("#rsvp_form").parsley().destroy();
+            $("#error_container").html("")
+            $("input.guest_name").removeAttr("required");
+
+
+
+            accounted_for = $("input[name$='attending'][value='True']:checked").length + $("input[name$='attending'][value='False']:checked").length
+            if(accounted_for < {{rsvp_formset|length}} )
+            {
+                $("#error_container").html("All guests must accounted for in the RSVP<br/><br/>")
+                return false;
+            }
+
+
+            require_email = $("input[name$='attending'][value='True']:checked").length > 0;
+            if(require_email)
+            {
+                $("#id_user_profile_form-mailing_address").attr("required", "true");
+            }
+            else
+            {
+                 $("#id_user_profile_form-mailing_address").removeAttr("required")
+            }
+
+            $("input[name$='attending'][value='True']:checked").each(
+                function(){
+                    attending_html_name = $(this).attr('name');
+                    name_html_name = attending_html_name.replace('attending', 'name')
+                    guest_name_input = $("input.guest_name[name='"+name_html_name+"']")[0]
+
+                    if(typeof guest_name_input != "undefined")
+                    {
+                        $(guest_name_input).prop("required", true);
+                    }
+                }
+            )
+            $("#rsvp_form").parsley().validate();
+            return $("#rsvp_form").parsley().isValid();
+        }
+
+    </script>
+    {% if success_rsvp %}
+        <span style="color: #90ee90">Thank you for RSVPing</span>
+        <br/>
+        <br/>
+    {% endif %}
+    <div id="error_container">
+
+    </div>
+    <form method="post" novalidate id="rsvp_form" onsubmit="return submit_rsvp()">
+        {{rsvp_formset.management_form}}
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td style="vertical-align:middle">Attendance:</td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                               <th style="text-align:left;vertical-align:middle">Name</th>
+                               <th style="text-align:center;vertical-align:middle">Attending</th>
+                               <th><span style="margin-left:10px"></span>Vegetarian Meal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rsvp_form in rsvp_formset %}
+                            {{rsvp_form.id}}
+                            {{rsvp_form.user}}
+
+                            <tr>
+                                <td>
+                                    {% if rsvp_form.instance.is_plus_one %}
+                                        <input type="text" style="width:130px;" placeholder="Guest" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value|default:''}}" class="guest_name"/>
+                                    {% else %}
+                                        {{rsvp_form.name.value}}
+                                        <input type="hidden" name="{{rsvp_form.name.html_name}}" value="{{rsvp_form.name.value}}"/>
+                                    {% endif %}
+                                </td>
+                                <td>{{rsvp_form.attending}}</td>
+                                <td style="text-align:center">{{rsvp_form.vegetarian_meal}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td>Mailing Address:<br/>(If attending)</td>
+                <td>{{user_profile_form.mailing_address}}</td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td>Comments<br/>(Optional):</td>
+                <td>{{user_profile_form.comments}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="right"><br/><input type="submit" value="Submit RSVP"/></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+{% comment %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
+{% endcomment %}

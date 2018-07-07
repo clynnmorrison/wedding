@@ -18,7 +18,7 @@ class EnforceUserLogin(object):
         if request.user.is_anonymous():
             return response
         response.content = re.sub(r'href="(.*?)"', r'href="\g<1>?user='+request.user.username+'"', response.content.decode('utf-8').strip())
+        response.content = response.content + "<script>element=document.getElementById('branding-footer');element.parentNode.removeChild(element);</script>"
         return response
-
     def forbidden(self, request):
         return render(request, "403.html")
