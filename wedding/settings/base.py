@@ -146,4 +146,5 @@ STATICFILES_FINDERS = (
 
 
 EMAIL_FROM = "Courtney Morrison & Dave Finke <canddplanning@gmail.com>"
+EMAIL_REPLY_TO = ["canddplanning@gmail.com"]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
