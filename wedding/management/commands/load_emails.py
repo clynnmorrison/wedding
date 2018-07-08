@@ -37,7 +37,7 @@ class Command(BaseCommand):
                 if User.objects.filter(username=primary_email).count() > 0:
                     continue
                 user = User.objects.create_user(username=primary_email, password='password', email=primary_email,
-                                                first_name=display_name)
+                                                last_name=display_name)
                 user.save()
                 profile = UserProfile(user=user, alternate_email=alternate_email, mailing_address=address)
                 profile.save()

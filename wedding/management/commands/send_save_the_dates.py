@@ -18,7 +18,7 @@ class Command(BaseCommand):
             if profile.sent_save_the_date or user.email.endswith('email.com'):
                 print "Not sending to" + user.username + " already sent or bad email address"
                 continue
-            html = template.render({"username": user.username, 'addressee': user.first_name,
+            html = template.render({"username": user.username, 'addressee': user.last_name,
                                     'host_url': settings.HOST_URL})
 
             send_to = [user.email]
