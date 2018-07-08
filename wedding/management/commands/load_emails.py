@@ -21,13 +21,17 @@ class Command(BaseCommand):
                     kids = []
 
                 adults_to_use_for_name = filter(lambda adult: adult != "Plus One", adults)
-
+                last_name = ""
                 if len(adults) > 2:
-                    display_name = ", ".join(adults_to_use_for_name[0:-1])+ " and " + adults_to_use_for_name[-1]
+                    first_name = ", ".join(adults_to_use_for_name[0:-1])
+                    last_name = " and " + adults_to_use_for_name[-1]
                 elif not kids:
-                    display_name = " and ".join(adults_to_use_for_name)
+                    first_name = adults_to_use_for_name[0]
+                    if len(adults_to_use_for_name)>1:
+                        last_name = " and " + adults_to_use_for_name[1]
                 else:
-                    display_name = ", ".join(adults_to_use_for_name) + " and Family"
+                    first_name = ", ".join(adults_to_use_for_name)
+                    last_name = " and Family"
                 primary_email = row["primary_email"].lstrip().rstrip()
                 alternate_email = row["alternate_email"]
                 if alternate_email:
@@ -36,8 +40,9 @@ class Command(BaseCommand):
 
                 if User.objects.filter(username=primary_email).count() > 0:
                     continue
+
                 user = User.objects.create_user(username=primary_email, password='password', email=primary_email,
-                                                last_name=display_name)
+                                                first_name=first_name, last_name=last_name)
                 user.save()
                 profile = UserProfile(user=user, alternate_email=alternate_email, mailing_address=address)
                 profile.save()

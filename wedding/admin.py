@@ -16,9 +16,15 @@ class RsvpAdmin(admin.ModelAdmin):
 	guest_name.short_description = 'Name'
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'last_name', 'last_login')
+    list_display = ('username', 'display_name', 'last_login')
     list_filter = ('last_login',)
     date_hierarchy = 'last_login'
+
+    def display_name(self, obj):
+        display_name = obj.first_name
+        if obj.last_name:
+            display_name += obj.last_name
+        return display_name
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
