@@ -33,6 +33,9 @@ class Command(BaseCommand):
                 if alternate_email:
                     alternate_email.lstrip().rstrip()
                 address = row["Address"]
+
+                if User.objects.get(username=primary_email).count() > 0:
+                    continue
                 user = User.objects.create_user(username=primary_email, password='password', email=primary_email,
                                                 first_name=display_name)
                 user.save()
