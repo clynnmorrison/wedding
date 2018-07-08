@@ -1,3 +1,5 @@
+import time
+
 from django.core.management.base import BaseCommand
 from django.template import loader
 from django.core.mail import EmailMultiAlternatives
@@ -10,23 +12,29 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         template = loader.get_template("wedding/save_the_date.html")
 
-        user = User.objects.get(username="finke4@sbcglobal.net")
-        if user.email.endswith('email.com'):
-            return
-        html = template.render({"username": user.username, 'addressee': user.first_name, 'host_url': settings.HOST_URL})
+        for user in User.objects.all():
+            profile = user.userprofile_set.all()[0]
 
-        send_to = [user.email]
-        profile = user.userprofile_set.all()[0]
-        if profile.alternate_email:
-            send_to.append(profile.alternate_email)
-        email = EmailMultiAlternatives(
-            subject="Dave & Courtney's Wedding - Save the Date",
-            body=html,
-            from_email=settings.EMAIL_FROM,
-            to=send_to,
-            reply_to=settings.EMAIL_REPLY_TO)
-        email.attach_alternative(html, 'text/html')
-        email.send()
+            if profile.sent_save_the_date or user.email.endswith('email.com'):
+                print "Not sending to" + user.username + " already sent or bad email address"
+                continue
+            html = template.render({"username": user.username, 'addressee': user.first_name,
+                                    'host_url': settings.HOST_URL})
 
-        profile.sent_save_the_date = True
-        profile.save()
+            send_to = [user.email]
+
+            if profile.alternate_email:
+                send_to.append(profile.alternate_email)
+            email = EmailMultiAlternatives(
+                subject="Dave & Courtney's Wedding - Save the Date",
+                body=html,
+                from_email=settings.EMAIL_FROM,
+                to=send_to,
+                reply_to=settings.EMAIL_REPLY_TO)
+            email.attach_alternative(html, 'text/html')
+            email.send()
+
+            profile.sent_save_the_date = True
+            profile.save()
+
+            time.sleep(120)

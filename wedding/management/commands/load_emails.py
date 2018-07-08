@@ -7,9 +7,9 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        User.objects.exclude(username="admin").delete()
-        UserProfile.objects.exclude(user__username="admin").delete()
-        Rsvp.objects.all().delete()
+        #User.objects.exclude(username="admin").delete()
+        #UserProfile.objects.exclude(user__username="admin").delete()
+        #Rsvp.objects.all().delete()
         dir_path = os.path.dirname(os.path.realpath(__file__))
         with open(os.path.join(dir_path, "wedding_list.csv")) as csv_file:
             reader = csv.DictReader(csv_file)
