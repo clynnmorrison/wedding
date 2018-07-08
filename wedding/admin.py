@@ -16,7 +16,7 @@ class RsvpAdmin(admin.ModelAdmin):
 	guest_name.short_description = 'Name'
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'first_name', 'last_login')
+    list_display = ('username', 'last_name', 'last_login')
     list_filter = ('last_login',)
     date_hierarchy = 'last_login'
 admin.site.unregister(User)
