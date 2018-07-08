@@ -30,8 +30,13 @@ class Command(BaseCommand):
                     if len(adults_to_use_for_name)>1:
                         last_name = " and " + adults_to_use_for_name[1]
                 else:
-                    first_name = ", ".join(adults_to_use_for_name)
-                    last_name = " and Family"
+                    if len(adults) > 1:
+                        first_name = adults_to_use_for_name[0]+", "
+                        last_name = adults_to_use_for_name[1] + " and Family"
+                    else:
+                        first_name = adults_to_use_for_name[0]
+                        last_name = "and Family"
+
                 primary_email = row["primary_email"].lstrip().rstrip()
                 alternate_email = row["alternate_email"]
                 if alternate_email:
@@ -40,7 +45,9 @@ class Command(BaseCommand):
 
                 if User.objects.filter(username=primary_email).count() > 0:
                     continue
-
+                if len(first_name) > 30:
+                    print primary_email
+                    print first_name
                 user = User.objects.create_user(username=primary_email, password='password', email=primary_email,
                                                 first_name=first_name, last_name=last_name)
                 user.save()
