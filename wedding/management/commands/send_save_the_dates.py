@@ -11,6 +11,8 @@ class Command(BaseCommand):
         template = loader.get_template("wedding/save_the_date.html")
 
         user = User.objects.get(username="finke4@sbcglobal.net")
+        if user.email.endswith('email.com'):
+            return
         html = template.render({"username": user.username, 'addressee': user.first_name, 'host_url': settings.HOST_URL})
 
         send_to = [user.email]
@@ -25,3 +27,6 @@ class Command(BaseCommand):
             reply_to=settings.EMAIL_REPLY_TO)
         email.attach_alternative(html, 'text/html')
         email.send()
+
+        profile.sent_save_the_date = True
+        profile.save()
