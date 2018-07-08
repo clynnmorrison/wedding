@@ -73,7 +73,7 @@ form ul.inline li {
             accounted_for = $("input[name$='attending'][value='True']:checked").length + $("input[name$='attending'][value='False']:checked").length
             if(accounted_for < {{rsvp_formset|length}} )
             {
-                $("#error_container").html("All guests must accounted for in the RSVP<br/><br/>")
+                $("#error_container").html("<span style='color:red'>All guests must accounted for in the RSVP</span><br/><br/>")
                 return false;
             }
 

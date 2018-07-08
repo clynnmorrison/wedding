@@ -6,7 +6,9 @@ from django.views.decorators.csrf import csrf_exempt
 from wedding import forms
 from wedding.models import Rsvp
 from django.forms.models import modelformset_factory
-
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
+from django.conf import settings
 def render_wedding_woo(request):
     req = urllib2.Request('http://candwedding.weddingwoo.com'+request.path_info)
     try:
@@ -65,7 +67,23 @@ def rsvp(request):
     rsvp_formset = RsvpFormset(queryset=request.user.rsvp_set.all())
     user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0],
                                               prefix="user_profile_form")
-
+    email_rsvp(request.user)
     return render(request, 'wedding/rsvp.html', {'rsvp_formset': rsvp_formset,
                                                  'user_profile_form': user_profile_form,
                                                  'success_rsvp': success_rsvp})
+
+def email_rsvp(user):
+    try:
+        template = loader.get_template("wedding/rsvp_complete.html")
+        html = template.render({"user": user, "rsvps": user.rsvp_set.all(),
+                                "profile": user.userprofile_set.all()[0]})
+        email = EmailMultiAlternatives(
+            subject="Dave & Courtney's Wedding - Rsvp",
+            body=html,
+            from_email=settings.EMAIL_FROM,
+            to=settings.EMAIL_REPLY_TO,
+            reply_to=settings.EMAIL_REPLY_TO)
+        email.attach_alternative(html, 'text/html')
+        email.send()
+    except Exception, e:
+        pass
