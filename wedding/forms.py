@@ -14,7 +14,9 @@ class RsvpForm(ModelForm):
         fields = ['name', 'attending', 'vegetarian_meal']
 
 class UserProfileForm(ModelForm):
-    mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}), required=False)
+    mailing_address = forms.CharField(widget=forms.Textarea(
+        attrs={'rows': 3, 'cols': 30, 'data-parsley-errors-container': "#error_container",
+               'data-parsley-error-message': "Mailing address is required"}, ), required=False)
     comments = forms.CharField(widget=forms.Textarea(attrs={'rows': 5, 'cols': 30}), required=False)
     class Meta:
         model = UserProfile

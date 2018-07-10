@@ -64,26 +64,23 @@ def rsvp(request):
         if user_profile_form.is_valid():
             user_profile_form.save()
         success_rsvp = True;
+        log_rsvp(request.user)
     rsvp_formset = RsvpFormset(queryset=request.user.rsvp_set.all())
     user_profile_form = forms.UserProfileForm(instance=request.user.userprofile_set.all()[0],
                                               prefix="user_profile_form")
-    email_rsvp(request.user)
+
     return render(request, 'wedding/rsvp.html', {'rsvp_formset': rsvp_formset,
                                                  'user_profile_form': user_profile_form,
                                                  'success_rsvp': success_rsvp})
 
-def email_rsvp(user):
+def log_rsvp(user):
     try:
-        template = loader.get_template("wedding/rsvp_complete.html")
-        html = template.render({"user": user, "rsvps": user.rsvp_set.all(),
-                                "profile": user.userprofile_set.all()[0]})
-        email = EmailMultiAlternatives(
-            subject="Dave & Courtney's Wedding - Rsvp",
-            body=html,
-            from_email=settings.EMAIL_FROM,
-            to=settings.EMAIL_REPLY_TO,
-            reply_to=settings.EMAIL_REPLY_TO)
-        email.attach_alternative(html, 'text/html')
-        email.send()
+        msg = "User: {user}\nMailing Address: {mailing_address}\nComments: {comments}"
+        rsvp_templ = "{name} - attending: {attending}, vegetarian: {vege}"
+        profile = user.userprofile_set.all()[0]
+        print "   "
+        print msg.format(user=user.username, mailing_address=profile.mailing_address, comments=profile.comments)
+        for rsvp in user.rsvp_set.all():
+            print rsvp_templ.format(name=rsvp.name, attending=rsvp.attending, vege=rsvp.vegetarian_meal)
     except Exception, e:
-        pass
+        print e

@@ -17,11 +17,11 @@
           opacity: 1;
         }
 
-        .parsley-required {color: #90ee90}
+        .parsley-required {color: orange}
         input[type='radio'][value='True'] {margin-left:15px;}
 
         #error_container{
-            color: #90ee90
+            color: orange
         }
 
         #rsvp_form input:invalid, #rsvp_form textarea:invalid {
@@ -66,6 +66,7 @@ form ul.inline li {
         {
             $("#rsvp_form").parsley().destroy();
             $("#error_container").html("")
+            $("#success_container").html("")
             $("input.guest_name").removeAttr("required");
 
 
@@ -73,7 +74,7 @@ form ul.inline li {
             accounted_for = $("input[name$='attending'][value='True']:checked").length + $("input[name$='attending'][value='False']:checked").length
             if(accounted_for < {{rsvp_formset|length}} )
             {
-                $("#error_container").html("<span style='color:red'>All guests must accounted for in the RSVP</span><br/><br/>")
+                $("#error_container").html("All guests must accounted for in the RSVP")
                 return false;
             }
 
@@ -101,19 +102,23 @@ form ul.inline li {
                 }
             )
             $("#rsvp_form").parsley().validate();
-            return $("#rsvp_form").parsley().isValid();
+            if( $("#rsvp_form").parsley().isValid())
+            {
+                $("#rsvp_form").submit();
+            }
         }
 
     </script>
     {% if success_rsvp %}
+       <div id="success_container">
         <span style="color: #90ee90">Thank you for RSVPing</span>
-        <br/>
-        <br/>
+       </div>
     {% endif %}
     <div id="error_container">
 
     </div>
-    <form method="post" novalidate id="rsvp_form" onsubmit="return submit_rsvp()">
+       <br/>
+    <form method="post" novalidate id="rsvp_form">
         {{rsvp_formset.management_form}}
         {% csrf_token %}
 
@@ -163,7 +168,7 @@ form ul.inline li {
             </tr>
             <tr>
                 <td></td>
-                <td align="right"><br/><input type="submit" value="Submit RSVP"/></td>
+                <td align="right"><br/><input type="button" value="Submit RSVP" onclick="javascript:submit_rsvp()"/></td>
             </tr>
         </table>
 
