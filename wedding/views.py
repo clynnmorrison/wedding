@@ -8,15 +8,20 @@ from wedding.models import Rsvp
 from django.forms.models import modelformset_factory
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
+from django import template
 from django.conf import settings
 def render_wedding_woo(request):
-    req = urllib2.Request('http://candwedding.weddingwoo.com'+request.path_info)
+    path_info = request.path_info
+    if path_info == "/":
+        path_info = "home"
+    path_info = path_info.replace("-", "_")
     try:
-        response = urllib2.urlopen(req)
-        the_page = response.read().replace("http://candwedding.weddingwoo.com", "")
-        return HttpResponse(the_page)
-    except urllib2.HTTPError, e:
+        t = loader.get_template('wedding_woo/'+path_info+".html")
+    except template.TemplateDoesNotExist:
         return redirect("/")
+    rendered = t.render()
+    the_page = rendered.replace("http://candwedding.weddingwoo.com", "")
+    return HttpResponse(the_page)
 
 def suggestions(request):
     args = {"term": request.GET.get("term")}
