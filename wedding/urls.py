@@ -12,6 +12,7 @@ import spirit.urls
 # Override admin login for security purposes
 from django.contrib.auth.decorators import login_required
 from wedding import views
+from django.views.generic import TemplateView
 admin.site.login = login_required(admin.site.login)
 
 
@@ -21,6 +22,7 @@ urlpatterns = [
     url(r'^suggest', views.suggest),
     url(r'^rsvp', views.rsvp, name="rsvp"),
     url(r'^question-forum', include(spirit.urls)),
+    url(r'invitation', TemplateView.as_view(template_name='wedding/invitation.html')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', views.render_wedding_woo, name="home"),
 ]
