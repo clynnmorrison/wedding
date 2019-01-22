@@ -18,7 +18,8 @@ urlpatterns = [
     url(r'^rsvp', views.rsvp),
 
     url(r'invitation-email', TemplateView.as_view(template_name='wedding/invitation_email.html')),
-url(r'invitation', TemplateView.as_view(template_name='wedding/invitation.html')),
+    url(r'invitation', TemplateView.as_view(template_name='wedding/invitation.html')),
+    url(r'^user-images/(?P<user_id>\d+)/letter.jpg', views.invitation_envelope_image),
     url(r'^', views.render_wedding_woo),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

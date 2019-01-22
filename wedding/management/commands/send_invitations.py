@@ -22,7 +22,7 @@ class Command(BaseCommand):
             display_name = user.first_name
             if user.last_name:
                 display_name += user.last_name
-            html = template.render({"username": user.username, 'addressee': display_name,
+            html = template.render({"username": user.username, 'addressee': display_name, 'user_id': user.id,
                                     'host_url': settings.HOST_URL, 'start_pos': calculate_addresse_start_pos(display_name)})
 
             send_to = [user.email]
@@ -49,4 +49,4 @@ def calculate_addresse_start_pos(addressee):
     else:
         percentage = 8.6
 
-    return str((678 - (percentage * len(addressee))) /2)
+    return int((678 - (percentage * len(addressee))) /2)

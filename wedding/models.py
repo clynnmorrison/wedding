@@ -21,3 +21,5 @@ class UserProfile(models.Model):
     comments = models.TextField(blank=True, null=True)
     alternate_email = models.EmailField(blank=True, null=True)
     sent_save_the_date = models.BooleanField(default=False)
+    sent_invitation = models.BooleanField(default=False)
+    viewed_invitation = models.BooleanField(default=False)

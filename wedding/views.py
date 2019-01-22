@@ -9,7 +9,10 @@ from django.forms.models import modelformset_factory
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
 from django import template
+from django.views.static import serve
 from django.conf import settings
+from django.contrib.auth.models import User
+import os
 def render_wedding_woo(request):
     path_info = request.path_info
     if path_info == "/":
@@ -89,3 +92,14 @@ def log_rsvp(user):
             print rsvp_templ.format(name=rsvp.name, attending=rsvp.attending, vege=rsvp.vegetarian_meal)
     except Exception, e:
         print e
+
+def invitation_envelope_image(request, user_id):
+    document_root = os.path.join(settings.STATIC_ROOT)
+    try:
+        user = User.objects.get(pk=user_id)
+        profile = user.userprofile_set.all()[0]
+        profile.viewed_invitation = True
+        profile.save()
+    except User.DoesNotExist:
+        pass
+    return serve(request, os.path.join("images", "letter.jpg"), document_root=document_root)

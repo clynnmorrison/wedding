@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^question-forum', include(spirit.urls)),
     url(r'invitation', TemplateView.as_view(template_name='wedding/invitation.html')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^user-images/(?P<user_id>\d+)/letter.jpg', views.invitation_envelope_image),
     url(r'^', views.render_wedding_woo, name="home"),
 ]
 
