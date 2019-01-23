@@ -20,7 +20,7 @@ class Command(BaseCommand):
             # if profile.sent_invitation or user.email.endswith('email.com'):
             #     print "Not sending to" + user.username + " already sent or bad email address"
             #     continue
-            html = template.render({'user_id': user.id, 'host_url': settings.HOST_URL})
+            html = template.render({'user_id': user.id, 'host_url': settings.HOST_URL, 'user_email': user.email})
 
             send_to = [user.email]
 
