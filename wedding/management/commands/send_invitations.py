@@ -5,6 +5,7 @@ from django.template import loader
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.contrib.auth.models import User
+import os
 
 class Command(BaseCommand):
     help = 'Emails the invitations'
@@ -16,11 +17,10 @@ class Command(BaseCommand):
             print user
             profile = user.userprofile_set.all()[0]
 
-            # if profile.sent_save_the_date or user.email.endswith('email.com'):
+            # if profile.sent_invitation or user.email.endswith('email.com'):
             #     print "Not sending to" + user.username + " already sent or bad email address"
             #     continue
-            html = template.render({"username": user.username, 'user_id': user.id,
-                                    'host_url': settings.HOST_URL})
+            html = template.render({'user_id': user.id, 'host_url': settings.HOST_URL})
 
             send_to = [user.email]
 
@@ -32,6 +32,7 @@ class Command(BaseCommand):
                 from_email=settings.EMAIL_FROM,
                 to=send_to,
                 reply_to=settings.EMAIL_REPLY_TO)
+            email.attach_file(os.path.join(settings.BASE_DIR, "static", "venue_directions.pdf"))
             email.attach_alternative(html, 'text/html')
             email.send()
 
