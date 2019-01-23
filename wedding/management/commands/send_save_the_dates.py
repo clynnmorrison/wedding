@@ -12,9 +12,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         template = loader.get_template("wedding/save_the_date.html")
 
-        for user in User.objects.all():
+        for user in User.objects.filter(username='finke.dave@gmail.com'):
+            return
             profile = user.userprofile_set.all()[0]
-
+            print user.username
             if profile.sent_save_the_date or user.email.endswith('email.com'):
                 print "Not sending to" + user.username + " already sent or bad email address"
                 continue
