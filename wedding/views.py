@@ -102,4 +102,4 @@ def invitation_envelope_image(request, user_id):
         profile.save()
     except User.DoesNotExist:
         pass
-    return serve(request, os.path.join("images", "letter.jpg"), document_root=document_root)
+    return serve(request, os.path.join("images", "letter{}.jpg".format(user_id)), document_root=document_root)

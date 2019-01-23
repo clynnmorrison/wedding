@@ -19,18 +19,15 @@ class Command(BaseCommand):
             # if profile.sent_save_the_date or user.email.endswith('email.com'):
             #     print "Not sending to" + user.username + " already sent or bad email address"
             #     continue
-            display_name = user.first_name
-            if user.last_name:
-                display_name += user.last_name
-            html = template.render({"username": user.username, 'addressee': display_name, 'user_id': user.id,
-                                    'host_url': settings.HOST_URL, 'start_pos': calculate_addresse_start_pos(display_name)})
+            html = template.render({"username": user.username, 'user_id': user.id,
+                                    'host_url': settings.HOST_URL})
 
             send_to = [user.email]
 
             if profile.alternate_email:
                 send_to.append(profile.alternate_email)
             email = EmailMultiAlternatives(
-                subject="Dave & Courtney's Wedding - Save the Date",
+                subject="Dave & Courtney's Wedding - Invitation",
                 body=html,
                 from_email=settings.EMAIL_FROM,
                 to=send_to,
@@ -38,15 +35,7 @@ class Command(BaseCommand):
             email.attach_alternative(html, 'text/html')
             email.send()
 
-            profile.sent_save_the_date = True
+            profile.sent_invitation = True
             profile.save()
 
             time.sleep(120)
-
-def calculate_addresse_start_pos(addressee):
-    if len(addressee) > 40:
-        percentage = 8.3
-    else:
-        percentage = 8.6
-
-    return int((678 - (percentage * len(addressee))) /2)
