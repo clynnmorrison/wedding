@@ -21,7 +21,7 @@ class Command(BaseCommand):
 def create_letter(user_id, addressee):
     # create Image object with the input image
     font = ImageFont.truetype('FreeMonoOblique.ttf', size=35)
-    image = Image.open(os.path.join(settings.BASE_DIR, 'static', 'empty_letter.jpg'))
+    image = Image.open(os.path.join(settings.BASE_DIR, 'wedding', 'static', "images", 'empty_letter.jpg'))
 
     W, H = image.size
 
@@ -42,4 +42,4 @@ def create_letter(user_id, addressee):
     # draw.text((390, 450),'Dave Finke & Courtney Morrison', fill=color, font=font)
 
 
-    image.save(os.path.join(settings.BASE_DIR, 'static', 'letter{}.jpg'.format(user_id)))
+    image.save(os.path.join(settings.BASE_DIR, 'static', 'images', 'letter{}.jpg'.format(user_id)))
