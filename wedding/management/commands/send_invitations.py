@@ -32,7 +32,7 @@ class Command(BaseCommand):
                 from_email=settings.EMAIL_FROM,
                 to=send_to,
                 reply_to=settings.EMAIL_REPLY_TO)
-            email.attach_file(os.path.join(settings.BASE_DIR, "static", "venue_directions.pdf"))
+            email.attach_file(os.path.join(settings.BASE_DIR, "wedding", "static", "venue_directions.pdf"))
             email.attach_alternative(html, 'text/html')
             email.send()
 
