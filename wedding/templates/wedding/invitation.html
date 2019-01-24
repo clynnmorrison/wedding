@@ -129,11 +129,12 @@
 
 
         .card-container {
-    background-image: url(https://c1.ppassets.com/card_backgrounds/non_tiling_images/377/1fd98df5b5f0485d3f4cda0138eebfe1-248-377/compress90.jpeg);
+    background-image: url(/static/invitation/images/background.jpeg);
     background-size: cover;
     background-position: center center;
     margin-top: 30px;
     margin-bottom: 30px;
+    height: 600px;
 
 }
 
@@ -186,6 +187,13 @@
 
 
     </style>
+
+    <style>
+            #envelope {position:absolute;z-index:1; transition: transform 0.8s ease;left:25px}
+            #card {position:absolute;left:5px;top:160px;z-index:2; transition: transform 0.8s ease;}
+            #envelope_partial {position:absolute;z-index:3; transition: transform 0.8s ease;left:25px}
+            #animation {position:relative; height: 533px; overflow-y: visible; overflow-y:hidden; top: -600px;transition: transform 0.8s ease; }
+        </style>
 <link rel="stylesheet" type="text/css" href="/static/slick/slick.css"/>
 
     <link rel="stylesheet" type="text/css" href="/static/slick/slick-theme.css"/>
@@ -298,28 +306,40 @@
   </div>
   <div class="modal-body">
     <div class="card-container">
-<div class="pages">
+        <div class="pages" >
+            <div class="card-slide">
+                <img src="/static/invitation/images/card_shadow.png" height="293px" style="float: left;margin-top: 263px;margin-right: -3px"/>
+                <img class="push-image" src="/static/invitation/images/envelope.png" width="400px"/>
+            </div>
 
-  <div class="card-slide">
-      <img src="https://p.ppassets.com/images/receiver_experience/card_shadow.png" height="293px" style="float: left;margin-top: 263px;margin-right: -3px"/>
-      <img class="push-image" src="https://pi.ppassets.com/images/ppa/cards/images/556816487/original/8b3852792302b298ad6523f120350cdb-20-129474927?w=0.5&fm=png&sig=e0466d4f1bf93b35c3746011a5b7a1c4" width="400px"/></div>
+            <div class="card-slide">
+                <div id="animation" style="width:455px;">
+                    <div id="card">
+                        <img id="main_image_shadow" src="/static/invitation/images/card_shadow.png" height="560px" style="float: left; visibility: hidden;"/>
+                        <img width="400px" src="/static/invitation/images/first_page.jpg"/>
+                    </div>
+                    <div id="envelope">
+                        <img width="425px" src="/static/invitation/images/envelope.png"/>
+                    </div>
 
-  <div class="card-slide">
+                    <div id="envelope_partial">
+                        <img  width="425px" src="/static/invitation/images/envelope_partial.png"/>
+                    </div>
+                </div>
+            </div>
 
-      <img src="https://p.ppassets.com/images/receiver_experience/card_shadow.png" height="560px" style="float: left"/>
-      <img src="https://pi.ppassets.com/images/ppa/cards/images/556816488/original/49235d3282b7cab71f55a216f8eff54d-20-129474923?w=0.5&fm=jpg&q=99&sig=5c5ce6a58bb537828aa378ee58f5a358" width="400px" /></div>
+            <div class="card-slide">
+               <img class="push-image" src="/static/invitation/images/card_shadow.png" height="500px" style="float: left;"/>
+               <img class="push-image" src="/static/invitation/images/second_page.jpg" width="400px"/>
+            </div>
 
-    <div class="card-slide">
-        <img class="push-image" src="https://p.ppassets.com/images/receiver_experience/card_shadow.png" height="500px" style="float: left;"/>
+            <div class="card-slide">
+                <img class="push-image" src="/static/invitation/images/card_shadow.png" height="500px" style="float: left;"/>
+                <img class="push-image" src="/static/invitation/images/third_page.jpg" width="400px"/>
+            </div>
+        </div>
 
-        <img class="push-image" src="https://pi.ppassets.com/images/ppa/cards/images/556816491/original/5c4b812ba696514ac754460580efa35e-20-129474925?w=0.5&fm=jpg&q=99&sig=6704133866f2505e925505f0ef791f3e" width="400px"/></div>
-<div class="card-slide">
-    <img class="push-image" src="https://p.ppassets.com/images/receiver_experience/card_shadow.png" height="500px" style="float: left;"/>
-<img class="push-image" src="https://pi.ppassets.com/images/ppa/cards/images/556816490/original/ba76ea6777e0dbd9b30211cd2fd3e702-20-129475258?w=0.5&fm=jpg&q=99&sig=50f76cf77ec8d35d801fed28a110323f" width="400px"/></div>
-</div>
-</div>
   </div>
-
 </div>
 
 
@@ -432,7 +452,41 @@ $(".modal").click(function(event) {
 });
 
 </script>
+
+<script>
+    $(document).ready(function(){
+      setTimeout(lowerCard, 1000);
+    });
+
+    function lowerCard()
+    {
+        $('#animation').bind( 'transitionend', cardLowered);
+        $('#animation').css("transform","translate(0,620px)");
+    }
+
+    function cardLowered()
+    {
+        setTimeout(openCard, .6);
+    }
+
+    function openCard()
+    {
+        $('#envelope, #envelope_partial').bind( 'transitionend', function() {$(this).hide(); });
+        $('#card').css("transform","translate(0,-180px)");
+        $('#envelope, #envelope_partial').css("transform","translate(0, 330px)");
+        $('#animation').css("height", "auto")
+        $('#animation').css("overflow-y", "visible")
+
+        $('#main_image_shadow').css("visibility", "visible");
+
+    }
+</script>
+
   <input type="hidden" name="locale" id="locale" value="en" />
+
+
+
+
 </body>
 </html>
 
