@@ -4,7 +4,7 @@ from .models import Rsvp, UserProfile
 from django.contrib.auth.models import User
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "mailing_address", "comments", "viewed_invitation", "sent_invitations")
+    list_display = ("user", "mailing_address", "comments", "viewed_invitation", "sent_invitation")
     model = UserProfile
 
 
