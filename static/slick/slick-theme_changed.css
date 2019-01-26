@@ -88,11 +88,15 @@
 }
 .slick-prev:before
 {
-    content: url(/static/images/left_arrow.png);
+        opacity: 0.5;
+    background: url(/static/images/left_arrow_try.png);
+    z-index: -1
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: url(/static/images/right_arrow.png);
+        opacity: 0.5;
+    background: url(/static/images/left_arrow_try.png);
+    z-index: -1
 }
 
 .slick-next
@@ -106,11 +110,15 @@
 }
 .slick-next:before
 {
-     content: url(/static/images/right_arrow.png);
+    opacity: 0.5;
+    background: url(/static/images/left_arrow_try.png);
+    z-index: -1;
 }
 [dir='rtl'] .slick-next:before
 {
-    content: url(/static/images/left_arrow_try.png);
+        opacity: 0.5;
+    background: url(/static/images/left_arrow_try.png);
+    z-index: -1
 }
 
 /* Dots */

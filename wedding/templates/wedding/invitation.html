@@ -128,12 +128,11 @@
 
 
 
-        .card-container {
+        .card-container, .animation-container {
     background-image: url(/static/invitation/images/background.jpeg);
     background-size: cover;
     background-position: center center;
     margin-top: 30px;
-    margin-bottom: 30px;
     height: 600px;
 
 }
@@ -154,10 +153,10 @@
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 30px;
-  top: 50px;
-  width: 95%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: off; /* Enable scroll if needed */
+  top: 40px;
+  width: 90%; /* Full width */
+  height: 90%;
+  overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -184,9 +183,19 @@
 .card-slide {vertical-align: bottom}
 .card-slide img:hover {cursor: pointer}
 .push-image {margin-top:54px;}
+.slick-prev {left: 80px !important;z-index:100}
+.slick-next {right: 80px !important;z-index:100}
 
+.centered {
+  position: fixed;
+  left: 50%;
+  margin-left: -220px;
+
+}
 
     </style>
+
+
 
     <style>
             #envelope {position:absolute;z-index:1; transition: transform 0.8s ease;left:25px}
@@ -196,7 +205,7 @@
         </style>
 <link rel="stylesheet" type="text/css" href="/static/slick/slick.css"/>
 
-    <link rel="stylesheet" type="text/css" href="/static/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/slick/slick-theme.css?a=8"/>
     <!--[if lte IE 8]>
       <style type="text/css" media="screen">
         #about { -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, StartColorStr='#00000000', EndColorStr='#00000000')"; filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#00000000', EndColorStr='#00000000'); zoom: 1!important; }
@@ -261,8 +270,10 @@
         </li>-->
         <li>
           <a data-pjax="" href="/question-forum">Question Forum</a>
+
         </li>
   </ul>
+
 </div>
 
   </div>
@@ -305,7 +316,22 @@
     <span class="close">&times;</span>
   </div>
   <div class="modal-body">
-    <div class="card-container">
+      <div class="animation-container">
+          <div id="animation" class="centered">
+                <div id="card">
+                    <img id="main_image_shadow" src="/static/invitation/images/card_shadow.png" height="560px" style="float: left; visibility: hidden;"/>
+                    <img width="400px" src="/static/invitation/images/first_page.jpg"/>
+                </div>
+                <div id="envelope">
+                    <img width="425px" src="/static/invitation/images/envelope.png"/>
+                </div>
+
+                <div id="envelope_partial">
+                    <img  width="425px" src="/static/invitation/images/envelope_partial.png"/>
+                </div>
+        </div>
+    </div>
+    <div class="card-container" style="visibility:hidden">
         <div class="pages" >
             <div class="card-slide">
                 <img src="/static/invitation/images/card_shadow.png" height="293px" style="float: left;margin-top: 263px;margin-right: -3px"/>
@@ -313,24 +339,13 @@
             </div>
 
             <div class="card-slide">
-                <div id="animation" style="width:455px;">
-                    <div id="card">
-                        <img id="main_image_shadow" src="/static/invitation/images/card_shadow.png" height="560px" style="float: left; visibility: hidden;"/>
-                        <img width="400px" src="/static/invitation/images/first_page.jpg"/>
-                    </div>
-                    <div id="envelope">
-                        <img width="425px" src="/static/invitation/images/envelope.png"/>
-                    </div>
-
-                    <div id="envelope_partial">
-                        <img  width="425px" src="/static/invitation/images/envelope_partial.png"/>
-                    </div>
-                </div>
+                <img src="/static/invitation/images/card_shadow.png" height="560px" style="float: left; "/>
+                <img width="400px" src="/static/invitation/images/first_page.jpg"/>
             </div>
 
             <div class="card-slide">
-               <img class="push-image" src="/static/invitation/images/card_shadow.png" height="500px" style="float: left;"/>
-               <img class="push-image" src="/static/invitation/images/second_page.jpg" width="400px"/>
+                   <img class="push-image" src="/static/invitation/images/card_shadow.png" height="500px" style="float: left;"/>
+                   <img class="push-image" src="/static/invitation/images/second_page.jpg" width="400px"/>
             </div>
 
             <div class="card-slide">
@@ -395,7 +410,7 @@ $('.pages').slick({
   centerPadding: '1px',
 
   slidesToShow: 3,
-  infinite: false,
+  infinite: true,
   variableWidth: true,
     focusOnSelect: true,
     initialSlide: 1,
@@ -404,23 +419,22 @@ $('.pages').slick({
       breakpoint: 1024,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true
+        slidesToScroll: 1,
       }
     },
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToShow: 3,
+        slidesToScroll: 1,
       }
     },
     {
       breakpoint: 480,
       settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToShow: 3,
+        slidesToScroll: 1,
+
       }
     }
     // You can unslick at a given breakpoint now by adding:
@@ -471,14 +485,11 @@ $(".modal").click(function(event) {
 
     function openCard()
     {
-        $('#envelope, #envelope_partial').bind( 'transitionend', function() {$(this).hide(); });
+        $('#envelope').bind( 'transitionend', function() {$(".animation-container").css("display", "none");$(".card-container").css("visibility", "visible") });
         $('#card').css("transform","translate(0,-180px)");
         $('#envelope, #envelope_partial').css("transform","translate(0, 330px)");
         $('#animation').css("height", "auto")
         $('#animation').css("overflow-y", "visible")
-
-        $('#main_image_shadow').css("visibility", "visible");
-
     }
 </script>
 
