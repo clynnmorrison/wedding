@@ -109,6 +109,11 @@ form ul.inline li {
         }
 
     </script>
+
+    {% if not user_profile_form.mailing_address.value %}
+       <span style="color:#90ee90">Your reply is kindly requested by April 9, 2019</span>
+    {% endif %}
+
     {% if success_rsvp %}
        <div id="success_container">
         <span style="color: #90ee90">Thank you for RSVPing</span>
