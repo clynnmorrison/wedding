@@ -21,6 +21,8 @@ class EnforceUserLogin(object):
             return response
         if request.user.is_anonymous():
             return response
+        if 'question-forumtopic' in request.path:
+            return response
         response.content = re.sub(r'href="(.*?)"', r'href="\g<1>?user='+request.user.username+'"', response.content.decode('utf-8', errors="ignore").strip())
         return response
     def forbidden(self, request):

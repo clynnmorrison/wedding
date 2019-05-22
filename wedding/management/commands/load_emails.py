@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        with open(os.path.join(dir_path, "cousins.csv")) as csv_file:
+        with open(os.path.join(dir_path, "last_cousins.csv")) as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
                 adults = row["Adults"].split("|")

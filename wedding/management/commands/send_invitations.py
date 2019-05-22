@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         template = loader.get_template("wedding/invitation_email.html")
 
-        for user in User.objects.filter(email='finke.dave@gmail.com'):
+        for user in User.objects.filter(id__gte=331):
             print user
             profile = user.userprofile_set.all()[0]
 

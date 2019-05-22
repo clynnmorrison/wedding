@@ -6,7 +6,7 @@ import os
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        for user in User.objects.filter(email='finke.dave@gmail.com'):
+        for user in User.objects.filter(id__gte=331):
             print user
             profile = user.userprofile_set.all()[0]
 
