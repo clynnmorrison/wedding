@@ -10,26 +10,24 @@
 <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"7c24439aad","applicationID":"1660434","transactionName":"cQxYTURcCgpXRh0ODl8GRlhRVkkWWltGCRI=","queueTime":4,"applicationTime":134,"agent":""}</script>
 <script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
 
-    <link rel="shortcut icon" href="https://weddingwoo.imgix.net/uploads/favicon/5b0b7111976c9e3e9f000000/0cdb731fa2e44c82351c152e821b872a/IMG_0782.JPG?fit=crop&amp;w=32&amp;h=32">
+     <link rel="shortcut icon" href="/static/woo/IMG_0782_32_32.jpg">
 
-  <link rel="apple-touch-icon" href="https://weddingwoo.imgix.net/uploads/favicon/5b0b7111976c9e3e9f000000/0cdb731fa2e44c82351c152e821b872a/IMG_0782.JPG?fit=crop&amp;w=152&amp;h=152">
+  <link rel="apple-touch-icon" href="/static/woo/IMG_0782_152_152.jpg">
 
 
-
-      <meta property="og:image" content="https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=1600&h=1200">
+      <meta property="og:image" content="/static/woo/IMG_0950_large.jpg">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Courtney & Dave">
 
 
-  <title>Photos | Courtney & Dave | WeddingWoo</title>
+  <title>Photos | Courtney & Dave</title>
 
-  <link rel="stylesheet" media="screen, print" href="//d3qif39x2jyjyc.cloudfront.net/assets/homepage-af1bbe9edb00609a17e0b008d3a6a3ad052fc8a9e48f964f30ad6f58a2cc85f0.css" />
-
-    <link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/langdon-b835cd7ac7c7f9c9d06a7e8316cdc05d3f9ca60259b07d77d585867cb5bcb9bf.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/blackout-6ab83844ca40f853e405684a2185655336f459d889fc6d056e48688448383795.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/ostrich-sans-black-98bc28367ab6e5eeac22f5ad3084362e17e779a820c0f97477dccf873ace0e00.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/roboto-ff098753f8b19d64c4ede390a732148220e3144114171219ea825ca4a217d77a.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" media="screen, print" href="/static/woo/homepage-af1bbe9edb00609a17e0b008d3a6a3ad052fc8a9e48f964f30ad6f58a2cc85f0.css" />
+<link href="/static/woo/langdon-b835cd7ac7c7f9c9d06a7e8316cdc05d3f9ca60259b07d77d585867cb5bcb9bf.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/woo/blackout-6ab83844ca40f853e405684a2185655336f459d889fc6d056e48688448383795.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/woo/ostrich-sans-black-98bc28367ab6e5eeac22f5ad3084362e17e779a820c0f97477dccf873ace0e00.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/woo/roboto-ff098753f8b19d64c4ede390a732148220e3144114171219ea825ca4a217d77a.css" rel="stylesheet" type="text/css" media="screen" />
 
     <style type="text/css" media="screen">
       #control_color_backdrop { background-color: #EAECF0; }
@@ -128,13 +126,8 @@
 
   <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="JvsLLAhk24QgCRZR85RaakKzlLyZqH4Oxri2LAL7JoKfzmzChfzbJw/xhiUnmGgcjmYSthrhc3o99a25/gno/g==" />
-  <script src="//d3qif39x2jyjyc.cloudfront.net/assets/modernizr-91790f181496662dea959bc3feda43ee6a1742653138f9c872a47b2c33602e45.js"></script>
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-37150574-1']);
-  _gaq.push(['_setDomainName', 'weddingwoo.com']);
-  _gaq.push(['_trackPageview']);
-  </script>
+  <script src="/static/woo/modernizr-91790f181496662dea959bc3feda43ee6a1742653138f9c872a47b2c33602e45.js"></script>
+
 
 </head>
 
@@ -196,81 +189,81 @@
 
 
       <div id="royalslider" class="royalSlider rsDefault invisible">
-          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/fd34d64826df8677480794efd6c72217/IMG_1433.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/fd34d64826df8677480794efd6c72217/IMG_1433.JPG?fit=max&amp;w=800&amp;h=1200">
+          <a data-rsBigImg="/static/woo/IMG_1433.jpg" class="rsImg" href="/static/woo/IMG_1433.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/fd34d64826df8677480794efd6c72217/IMG_1433.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 1433" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/cf14856c151c8737d15e9e9e9e57eb93/Picture049.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/cf14856c151c8737d15e9e9e9e57eb93/Picture049.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_1433_thumb.jpg" alt="Img 1433" />
+</a>          <a data-rsBigImg="/static/woo/Picture049.jpg" class="rsImg" href="/static/woo/Picture049.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/cf14856c151c8737d15e9e9e9e57eb93/Picture049.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture049" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/5390e262b26c6e1462f63ebdd7828513/Picture108.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/5390e262b26c6e1462f63ebdd7828513/Picture108.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture049_thumb.jpg" alt="Picture049" />
+</a>          <a data-rsBigImg="/static/woo/Picture108.jpg" class="rsImg" href="/static/woo/Picture108.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/5390e262b26c6e1462f63ebdd7828513/Picture108.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture108" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/e79d20518125dccbb9bda7ea5b5eb8a0/Picture325.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/e79d20518125dccbb9bda7ea5b5eb8a0/Picture325.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture108_thumb.jpg" alt="Picture108" />
+</a>          <a data-rsBigImg="/static/woo/Picture325.jpg" class="rsImg" href="/static/woo/Picture325.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/e79d20518125dccbb9bda7ea5b5eb8a0/Picture325.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture325" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/29f75c2b17d17895eabab8754df4ec9a/Picture322.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/29f75c2b17d17895eabab8754df4ec9a/Picture322.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture325_thumb.jpg" alt="Picture325" />
+</a>          <a data-rsBigImg="/static/woo/Picture322.jpg" class="rsImg" href="/static/woo/Picture322.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/29f75c2b17d17895eabab8754df4ec9a/Picture322.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture322" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/b6d013eabd8dccf32186a4f6bfdee366/Picture354.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/b6d013eabd8dccf32186a4f6bfdee366/Picture354.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture322_thumb.jpg" alt="Picture322" />
+</a>          <a data-rsBigImg="/static/woo/Picture354.jpg" class="rsImg" href="/static/woo/Picture354.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/b6d013eabd8dccf32186a4f6bfdee366/Picture354.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture354" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/f2bf098776e8ca31de82b5aa374c0ad9/Picture520.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/f2bf098776e8ca31de82b5aa374c0ad9/Picture520.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture354_thumb.jpg" alt="Picture354" />
+</a>          <a data-rsBigImg="/static/woo/Picture520.jpg" class="rsImg" href="/static/woo/Picture520.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/f2bf098776e8ca31de82b5aa374c0ad9/Picture520.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture520" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/1f8dcac98a777b43f0c862e38d90270a/Picture428.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/1f8dcac98a777b43f0c862e38d90270a/Picture428.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture520_thumb.jpg" alt="Picture520" />
+</a>          <a data-rsBigImg="/static/woo/Picture428.jpg" class="rsImg" href="/static/woo/Picture428.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/1f8dcac98a777b43f0c862e38d90270a/Picture428.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture428" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/2eeea9cba3ed4d3052c29dc6ba0dd23e/Picture421.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/2eeea9cba3ed4d3052c29dc6ba0dd23e/Picture421.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture428_thumb.jpg" alt="Picture428" />
+</a>          <a data-rsBigImg="/static/woo/Picture421.jpg" class="rsImg" href="/static/woo/Picture421.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/2eeea9cba3ed4d3052c29dc6ba0dd23e/Picture421.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture421" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/58a573d7ef2f078328b7ed44cfa04781/Picture419.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/58a573d7ef2f078328b7ed44cfa04781/Picture419.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture421_thumb.jpg" alt="Picture421" />
+</a>          <a data-rsBigImg="/static/woo/Picture419.jpg" class="rsImg" href="/static/woo/Picture419.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/58a573d7ef2f078328b7ed44cfa04781/Picture419.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture419" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/a7f5f636f86f5873985f201715db44a5/Picture583.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/a7f5f636f86f5873985f201715db44a5/Picture583.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture419_thumb.jpg" alt="Picture419" />
+</a>          <a data-rsBigImg="/static/woo/Picture583.jpg" class="rsImg" href="/static/woo/Picture583.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/a7f5f636f86f5873985f201715db44a5/Picture583.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture583" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/8145fcf10e0f4d105fcd749cc6e69acc/Picture242.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/8145fcf10e0f4d105fcd749cc6e69acc/Picture242.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture583_thumb.jpg" alt="Picture583" />
+</a>          <a data-rsBigImg="/static/woo/Picture242.jpg" class="rsImg" href="/static/woo/Picture242.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/8145fcf10e0f4d105fcd749cc6e69acc/Picture242.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture242" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/0e404d50eab80ac6e8c18a06cdb933e8/Picture610.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/0e404d50eab80ac6e8c18a06cdb933e8/Picture610.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture242_thumb.jpg" alt="Picture242" />
+</a>          <a data-rsBigImg="/static/woo/Picture610.jpg" class="rsImg" href="/static/woo/Picture610.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/0e404d50eab80ac6e8c18a06cdb933e8/Picture610.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture610" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/67a016b01c257bd0770f6c23c7eb2496/Picture605.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/67a016b01c257bd0770f6c23c7eb2496/Picture605.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture610_thumb.jpg" alt="Picture610" />
+</a>          <a data-rsBigImg="/static/woo/Picture605.jpg" class="rsImg" href="/static/woo/Picture605.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/67a016b01c257bd0770f6c23c7eb2496/Picture605.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture605" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/460c9183d6ee9498a6f72494c4982e20/Picture741.jpg?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/460c9183d6ee9498a6f72494c4982e20/Picture741.jpg?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture605_thumb.jpg" alt="Picture605" />
+</a>          <a data-rsBigImg="/static/woo/Picture741.jpg" class="rsImg" href="/static/woo/Picture741.jpg">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/460c9183d6ee9498a6f72494c4982e20/Picture741.jpg?fit=max&amp;w=125&amp;h=125" alt="Picture741" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/051a7c7cf4db6bde8ff2fdad2007027a/IMG_0110.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/051a7c7cf4db6bde8ff2fdad2007027a/IMG_0110.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/Picture741_thumb.jpg" alt="Picture741" />
+</a>          <a data-rsBigImg="/static/woo/IMG_0110.JPG" class="rsImg" href="/static/woo/IMG_0110.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/051a7c7cf4db6bde8ff2fdad2007027a/IMG_0110.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 0110" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/78adf0090c8a2620b8504226fc2549c5/IMG_0548.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/78adf0090c8a2620b8504226fc2549c5/IMG_0548.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_0110_thumb.jpg" alt="Img 0110" />
+</a>          <a data-rsBigImg="/static/woo/IMG_0548.JPG" class="rsImg" href="/static/woo/IMG_0548.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/78adf0090c8a2620b8504226fc2549c5/IMG_0548.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 0548" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/9662e2cf075ae32bba59bc3d22ee364d/IMG_0782.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/9662e2cf075ae32bba59bc3d22ee364d/IMG_0782.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_0548_thumb.jpg" alt="Img 0548" />
+</a>          <a data-rsBigImg="/static/woo/IMG_0782.JPG" class="rsImg" href="/static/woo/IMG_0782.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/9662e2cf075ae32bba59bc3d22ee364d/IMG_0782.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 0782" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/ea305fb87038fb0ca61b971adfc5a38e/IMG_0941.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/ea305fb87038fb0ca61b971adfc5a38e/IMG_0941.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_0782_thumb.jpg" alt="Img 0782" />
+</a>          <a data-rsBigImg="/static/woo//IMG_0941.JPG" class="rsImg" href="/static/woo/IMG_0941.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/ea305fb87038fb0ca61b971adfc5a38e/IMG_0941.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 0941" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/46a907a3129f34a3348d5ab255831bca/IMG_0987.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/46a907a3129f34a3348d5ab255831bca/IMG_0987.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_0941_thumb.jpg" alt="Img 0941" />
+</a>          <a data-rsBigImg="/static/woo/IMG_0987.JPG" class="rsImg" href="/static/woo/IMG_0987.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/46a907a3129f34a3348d5ab255831bca/IMG_0987.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 0987" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/0c3ca43e769f80f5b56e00ca6f75b4ab/IMG_1069.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/0c3ca43e769f80f5b56e00ca6f75b4ab/IMG_1069.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_0987_thumb.jpg" alt="Img 0987" />
+</a>          <a data-rsBigImg="/static/woo/IMG_1069.JPG" class="rsImg" href="/static/woo/IMG_1069.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/0c3ca43e769f80f5b56e00ca6f75b4ab/IMG_1069.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 1069" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/c5f76d7c74d1d9d71813df05bdb770b8/IMG_1054.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/c5f76d7c74d1d9d71813df05bdb770b8/IMG_1054.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_1069_thumb.jpg" alt="Img 1069" />
+</a>          <a data-rsBigImg="/static/woo/IMG_1054.JPG" class="rsImg" href="/static/woo/IMG_1054.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/c5f76d7c74d1d9d71813df05bdb770b8/IMG_1054.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 1054" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/b383d8765de391a40165aeba6d4d4081/IMG_5007.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/b383d8765de391a40165aeba6d4d4081/IMG_5007.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_1054_thumb.jpg" alt="Img 1054" />
+</a>          <a data-rsBigImg="/static/woo/IMG_5007.JPG" class="rsImg" href="/static/woo/IMG_5007.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/b383d8765de391a40165aeba6d4d4081/IMG_5007.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 5007" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/3a5f904144f5a75d0523ee9b1997b2e0/IMG_4904.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/3a5f904144f5a75d0523ee9b1997b2e0/IMG_4904.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_5007_thumb.jpg" alt="Img 5007" />
+</a>          <a data-rsBigImg="/static/woo/IMG_4904.JPG" class="rsImg" href="/static/woo/IMG_4904.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/3a5f904144f5a75d0523ee9b1997b2e0/IMG_4904.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 4904" />
-</a>          <a data-rsBigImg="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/d3f7459a6d2a20e257a0612e38f6eb68/IMG_4996.JPG?fit=max&amp;w=2400&amp;h=2400" class="rsImg" href="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/d3f7459a6d2a20e257a0612e38f6eb68/IMG_4996.JPG?fit=max&amp;w=800&amp;h=1200">
+            <img class="rsTmb" src="/static/woo/IMG_4904_thumb.jpg" alt="Img 4904" />
+</a>          <a data-rsBigImg="/static/woo/IMG_4996.JPG" class="rsImg" href="/static/woo/IMG_4996.JPG">
 
-            <img class="rsTmb" src="https://weddingwoo.imgix.net/uploads/photos/5b0b7111976c9e3e9f000000/d3f7459a6d2a20e257a0612e38f6eb68/IMG_4996.JPG?fit=max&amp;w=125&amp;h=125" alt="Img 4996" />
+            <img class="rsTmb" src="/static/woo/IMG_4996_thumb.jpg" alt="Img 4996" />
 </a>      </div>
 
   </div>
@@ -302,7 +295,7 @@
 
       </div>
     <div class="backdrop"><div class="background"></div></div>
-<script src="//d3qif39x2jyjyc.cloudfront.net/assets/homepage-671ee345d92005b1e959c6478196ce228af7490c8c3ff971ba35abe93caa900b.js"></script>
+<script src="/static/woo/homepage-671ee345d92005b1e959c6478196ce228af7490c8c3ff971ba35abe93caa900b.js"></script>
   <script>
     new BackgroundImage("/static/woo/IMG_0950_small.jpg", "/static/woo/IMG_0950_large.jpg", {horizontal: "50", vertical: "50", scaling: "fill"}).loadBackground();
   </script>

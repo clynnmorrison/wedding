@@ -10,26 +10,24 @@
 <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"7c24439aad","applicationID":"1660434","transactionName":"cQxYTURcCgpXRh0ODl8GRlhRVkkVUVxXAhReBg==","queueTime":7,"applicationTime":78,"agent":""}</script>
 <script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
 
-    <link rel="shortcut icon" href="https://weddingwoo.imgix.net/uploads/favicon/5b0b7111976c9e3e9f000000/0cdb731fa2e44c82351c152e821b872a/IMG_0782.JPG?fit=crop&amp;w=32&amp;h=32">
+     <link rel="shortcut icon" href="/static/woo/IMG_0782_32_32.jpg">
 
-  <link rel="apple-touch-icon" href="https://weddingwoo.imgix.net/uploads/favicon/5b0b7111976c9e3e9f000000/0cdb731fa2e44c82351c152e821b872a/IMG_0782.JPG?fit=crop&amp;w=152&amp;h=152">
+  <link rel="apple-touch-icon" href="/static/woo/IMG_0782_152_152.jpg">
 
 
-
-      <meta property="og:image" content="https://weddingwoo.imgix.net/uploads/background/5b0b7111976c9e3e9f000000/6eed7323edac92bf08438a5864d88fce/IMG_0950.JPG?fit=max&w=1600&h=1200">
+      <meta property="og:image" content="/static/woo/IMG_0950_large.jpg">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Courtney & Dave">
 
 
-  <title>Schedule | Courtney & Dave | WeddingWoo</title>
+  <title>Schedule | Courtney & Dave</title>
 
-  <link rel="stylesheet" media="screen, print" href="//d3qif39x2jyjyc.cloudfront.net/assets/homepage-af1bbe9edb00609a17e0b008d3a6a3ad052fc8a9e48f964f30ad6f58a2cc85f0.css" />
-
-    <link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/langdon-b835cd7ac7c7f9c9d06a7e8316cdc05d3f9ca60259b07d77d585867cb5bcb9bf.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/blackout-6ab83844ca40f853e405684a2185655336f459d889fc6d056e48688448383795.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/ostrich-sans-black-98bc28367ab6e5eeac22f5ad3084362e17e779a820c0f97477dccf873ace0e00.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="//d3qif39x2jyjyc.cloudfront.net/assets/fonts/roboto-ff098753f8b19d64c4ede390a732148220e3144114171219ea825ca4a217d77a.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" media="screen, print" href="/static/woo/homepage-af1bbe9edb00609a17e0b008d3a6a3ad052fc8a9e48f964f30ad6f58a2cc85f0.css" />
+<link href="/static/woo/langdon-b835cd7ac7c7f9c9d06a7e8316cdc05d3f9ca60259b07d77d585867cb5bcb9bf.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/woo/blackout-6ab83844ca40f853e405684a2185655336f459d889fc6d056e48688448383795.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/woo/ostrich-sans-black-98bc28367ab6e5eeac22f5ad3084362e17e779a820c0f97477dccf873ace0e00.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/woo/roboto-ff098753f8b19d64c4ede390a732148220e3144114171219ea825ca4a217d77a.css" rel="stylesheet" type="text/css" media="screen" />
 
     <style type="text/css" media="screen">
       #control_color_backdrop { background-color: #EAECF0; }
@@ -128,13 +126,8 @@
 
   <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="V/cAnbk0HEGUtQm/mz8PFGRChxDZgXUYoxHIN9M0T0juwmdzNKwc4rtNmctPMz1iqJcBGlrIeGxYXNOiL8aBNA==" />
-  <script src="//d3qif39x2jyjyc.cloudfront.net/assets/modernizr-91790f181496662dea959bc3feda43ee6a1742653138f9c872a47b2c33602e45.js"></script>
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-37150574-1']);
-  _gaq.push(['_setDomainName', 'weddingwoo.com']);
-  _gaq.push(['_trackPageview']);
-  </script>
+  <script src="/static/woo/modernizr-91790f181496662dea959bc3feda43ee6a1742653138f9c872a47b2c33602e45.js"></script>
+
 
 </head>
 
@@ -202,7 +195,7 @@
       <h3>Shuttle Departs</h3>
         <span class="time"> 3:45 PM</span>
     </div>
-      <img src="https://weddingwoo.imgix.net/uploads/schedule/5b0b7111976c9e3e9f000000/82f5a84a5abf7d9bcb318d2e7f50a1ee/shuttle_bus.jpg?fit=max&amp;w=500&amp;h=750" alt="Shuttle bus" />
+      <img src="/static/woo/shuttle_bus.jpg" alt="Shuttle bus" />
       <div class="body">
         <p>The shuttle will be taking people from the Mohicans&nbsp;Lodge and Conference Center to the Grand Barn at the Mohicans.</p>
 <p><br></p>
@@ -288,7 +281,7 @@
 <p><a href="https://www.google.com/maps/dir//40.6129833,-82.3170912/@40.6129988,-82.3171452,81m/data=!3m1!1e3">Directions & Map</a>&nbsp;</p><p>GPS coordinates: 40.6129833,-82.3170912<br></p>
 <p><br></p>
 <p><a href="http://www.hikingproject.com/trail/7044533/lyons-falls-trail">http://www.hikingproject.com/trail/7044533/lyons-falls-trail</a></p>
-<p><img src="https://weddingwoo.imgix.net/uploads/inline/5b0b7111976c9e3e9f000000/957dc0e3d1614790ca501f6628b9a6b1/7047868_large_1555538010.jpg?fit=max&w=500&h=750"><br></p>
+<p><img src="/static/woo/lyons_hike.jpg"><br></p>
       </div>
     <div class="location">
     </div>
@@ -346,7 +339,7 @@
 
       </div>
     <div class="backdrop"><div class="background"></div></div>
-<script src="//d3qif39x2jyjyc.cloudfront.net/assets/homepage-671ee345d92005b1e959c6478196ce228af7490c8c3ff971ba35abe93caa900b.js"></script>
+<script src="/static/woo/homepage-671ee345d92005b1e959c6478196ce228af7490c8c3ff971ba35abe93caa900b.js"></script>
   <script>
     new BackgroundImage("/static/woo/IMG_0950_small.jpg", "/static/woo/IMG_0950_large.jpg", {horizontal: "50", vertical: "50", scaling: "fill"}).loadBackground();
   </script>
