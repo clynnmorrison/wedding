@@ -23,5 +23,5 @@ class UserProfile(models.Model):
     sent_save_the_date = models.BooleanField(default=False)
     sent_invitation = models.BooleanField(default=False)
     viewed_invitation = models.BooleanField(default=False)
-
+    sent_photos_link = models.BooleanField(default=False)
     present_comments = models.TextField(blank=True, null=True)
