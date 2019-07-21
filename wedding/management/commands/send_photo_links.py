@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         template = loader.get_template("wedding/pictures_email.html")
 
-        for user in User.objects.filter(username='finke.dave@gmail.com'):
+        for user in User.objects.filter():
             profile = user.userprofile_set.all()[0]
             if profile.sent_photos_link or user.email.endswith('email.com'):
                 print "Not sending to" + user.username + " already sent or bad email address"
