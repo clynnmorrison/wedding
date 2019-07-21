@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_per_page = 300
-    list_display = ("user", "mailing_address", "comments", "viewed_invitation", "sent_invitation")
+    list_display = ("user", "mailing_address", "comments", "viewed_invitation", "sent_invitation", "sent_photos_link" )
     model = UserProfile
 
 
